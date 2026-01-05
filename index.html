@@ -1,755 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Aamir Hussain | Digital Marketing Specialist</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #222;
-            background:
-                linear-gradient(120deg, #e3f2fd 65%, #fff 100%),
-                url("https://www.transparenttextures.com/patterns/pw-maze-white.png");
-            position: relative;
-        }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-            background:
-                radial-gradient(circle at 12% 20%, #42a5f5 0%, transparent 65%) 0 0/800px 540px no-repeat,
-                radial-gradient(circle at 88% 80%, #1565c0 0%, transparent 70%) 0 0/900px 540px no-repeat,
-                radial-gradient(circle at 55% 15%, #bbdefb 0%, transparent 70%) 0 0/600px 340px no-repeat,
-                radial-gradient(circle at 75% 60%, #90caf9 0%, transparent 70%) 0 0/600px 320px no-repeat;
-            opacity: 0.25;
-        }
-        header { background: #1565c0; color: #fff; padding: 32px 0 16px 0; text-align: center; position: relative; z-index: 1;}
-        nav { background: #0a3977; color: #fff; display: flex; justify-content: center; gap: 32px; padding: 12px 0;}
-        nav a { color: #fff; text-decoration: none; font-weight: 500; font-size: 16px;}
-        nav a:hover { text-decoration: underline;}
-        .profile-flip-container {
-            perspective: 1000px;
-            width: 440px;
-            max-width: 96vw;
-            margin: 28px auto 0 auto;
-            z-index: 2;
-            position: relative;
-        }
-        .profile-flip-card {
-            width: 100%;
-            height: 170px;
-            position: relative;
-            transition: transform 0.8s cubic-bezier(.23,.41,.47,.99);
-            transform-style: preserve-3d;
-            cursor: pointer;
-        }
-        .profile-flip-container.flipped .profile-flip-card {
-            transform: rotateY(-180deg);
-        }
-        .profile-front, .profile-back {
-            position: absolute;
-            width: 100%;
-            height: 170px;
-            backface-visibility: hidden;
-            border-radius: 20px;
-            box-shadow: 0 4px 18px #1565c033;
-        }
-        .profile-front {
-            background:
-                linear-gradient(120deg, #e3f2fd 60%, #fff 120%),
-                url("https://www.transparenttextures.com/patterns/pw-maze-white.png");
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .profile-front::before {
-            content: "";
-            position: absolute;
-            top: -30px; left: -60px;
-            width: 160px; height: 160px;
-            background: radial-gradient(circle, #1565c0 48%, transparent 80%);
-            opacity: 0.18;
-            z-index: 0;
-        }
-        .profile-front::after {
-            content: "";
-            position: absolute;
-            bottom: -40px; right: -80px;
-            width: 180px; height: 120px;
-            background: radial-gradient(circle, #42a5f5 38%, transparent 80%);
-            opacity: 0.13;
-            z-index: 0;
-        }
-        .profile-front .bg-shape1 {
-            position: absolute;
-            top: 40px; left: 40px;
-            width: 54px; height: 54px;
-            background: linear-gradient(120deg, #42a5f5 20%, #fff 90%);
-            border-radius: 50%;
-            opacity: 0.25;
-            z-index: 0;
-        }
-        .profile-front .bg-shape2 {
-            position: absolute;
-            bottom: 10px; right: 60px;
-            width: 38px; height: 38px;
-            background: linear-gradient(120deg, #1565c0 20%, #fff 90%);
-            border-radius: 50%;
-            opacity: 0.22;
-            z-index: 0;
-        }
-        .profile-title {
-            font-size: 2.4em;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #1565c0;
-            text-shadow:
-                1px 1px 0 #42a5f5,
-                2px 2px 0 #42a5f5,
-                4px 4px 12px #1565c088;
-            margin-bottom: 5px;
-            z-index: 1;
-            position: relative;
-        }
-        .profile-subtitle {
-            font-size: 1.25em;
-            color: #fff;
-            font-weight: bold;
-            background: linear-gradient(90deg, #1a237e 55%, #42a5f5 100%);
-            box-shadow: 0 2px 18px #1565c055;
-            text-shadow: 1px 1px 5px #1565c0;
-            border-radius: 8px;
-            padding: 6px 18px;
-            display: inline-block;
-            margin-bottom: 15px;
-            z-index: 1;
-            position: relative;
-        }
-        .profile-flip-hint {
-            color: #287d29;
-            background: #e3f2fd;
-            border-radius: 7px;
-            font-size: 13px;
-            padding: 2px 14px;
-            margin-top: 6px;
-            box-shadow: 0 1px 4px #469d4922;
-            z-index: 2;
-            position: relative;
-            font-weight: 500;
-            transition: background 0.22s;
-        }
-        .profile-flip-hint:hover {
-            background: #c8e6c9;
-        }
-        .profile-back {
-            background:
-                linear-gradient(120deg, #fafafa 50%, #e3f2fd 100%),
-                url("https://www.transparenttextures.com/patterns/pw-maze-white.png");
-            color: #1565c0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transform: rotateY(180deg);
-            border: 2px solid #42a5f5;
-        }
-        .profile-back-title {
-            font-size: 1.15em;
-            font-weight: bold;
-            margin-bottom: 7px;
-            letter-spacing: 1px;
-        }
-        .profile-back-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 8px;
-        }
-        .profile-back-skill-btn {
-            background: linear-gradient(120deg, #42a5f5 60%, #1565c0 100%);
-            color: #fff;
-            border-radius: 50px;
-            padding: 7px 15px;
-            font-size: 14px;
-            font-weight: 500;
-            border: none;
-            box-shadow: 0 2px 8px #42a5f533;
-            cursor: default;
-            transition: 0.15s;
-        }
-        .profile-back-skill-btn:hover { filter: brightness(0.93); transform: scale(1.06);}
-        @media (max-width: 600px) {
-            .profile-flip-container { width: 98vw; }
-            .profile-flip-card, .profile-front, .profile-back { height: 135px; }
-            .profile-title { font-size: 1.3em; }
-            .profile-subtitle { font-size: 1em; padding: 5px 12px;}
-            .profile-back-title { font-size: 0.98em;}
-            .profile-back-skill-btn { font-size: 12px; padding: 4px 8px;}
-            .profile-front .bg-shape1, .profile-front .bg-shape2 { display: none; }
-        }
-        .circle-links-bg {
-            background: linear-gradient(120deg, #1565c0 50%, #42a5f5 100%);
-            padding: 32px 0;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #1565c022;
-            margin-bottom: 40px;
-            margin-top: 24px;
-            position: relative;
-            z-index: 1;
-        }
-        .circle-links-bg.bottom-circles {
-            margin-top: 0;
-        }
-        .circle-links {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 0 auto;
-        }
-        .circle-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            background: linear-gradient(120deg, #1a237e 40%, #42a5f5 100%);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 2px 10px #0002;
-            transition: 0.18s;
-            border: 2px solid #fff;
-            position: relative;
-            text-align: center;
-        }
-        .circle-btn span {
-            display: block;
-            line-height: 1.2;
-            padding: 0 5px;
-        }
-        .circle-btn.gmail,
-        .circle-btn.linkedin,
-        .circle-btn.github,
-        .circle-btn.phone,
-        .circle-btn.location,
-        .circle-btn.resume,
-        .circle-btn.project {
-            background: linear-gradient(120deg, #1a237e 40%, #42a5f5 100%);
-            color: #fff;
-        }
-        .circle-btn:hover {
-            transform: scale(1.09);
-            filter: brightness(0.95);
-            box-shadow: 0 6px 25px #42a5f5aa;
-            z-index: 1;
-        }
-        section { max-width: 900px; margin: 44px auto 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0001; padding: 32px 32px 24px 32px; position: relative; z-index: 1;}
-        section:not(:first-of-type) { margin-top: 24px;}
-        section h3 { color: #1565c0; margin-top: 0; margin-bottom: 12px;}
-        ul, li { margin: 0; padding: 0;}
-        li { margin-bottom: 8px;}
-        #about {
-            background: linear-gradient(120deg, #e3f2fd 80%, #fff 100%), url("https://www.transparenttextures.com/patterns/cubes.png");
-            position: relative;
-            overflow: hidden;
-        }
-        #about:before {
-            content: "";
-            position: absolute;
-            top: -40px; left: -60px;
-            width: 180px; height: 180px;
-            background: radial-gradient(circle, #1565c0 38%, transparent 80%);
-            opacity: 0.15;
-            z-index: 0;
-        }
-        #about:after {
-            content: "";
-            position: absolute;
-            bottom: -60px; right: -100px;
-            width: 240px; height: 140px;
-            background: radial-gradient(circle, #42a5f5 38%, transparent 80%);
-            opacity: 0.11;
-            z-index: 0;
-        }
-        #about > * { position: relative; z-index: 1; }
-        #skills {
-            background: linear-gradient(120deg, #e3f2fd 80%, #fff 100%), url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
-            position: relative;
-            overflow: hidden;
-        }
-        #skills:before {
-            content: "";
-            position: absolute;
-            top: -40px; left: -70px;
-            width: 160px; height: 160px;
-            background: radial-gradient(circle, #42a5f5 38%, transparent 80%);
-            opacity: 0.18;
-            z-index: 0;
-        }
-        #skills:after {
-            content: "";
-            position: absolute;
-            bottom: -50px; right: -80px;
-            width: 200px; height: 120px;
-            background: radial-gradient(circle, #1565c0 32%, transparent 80%);
-            opacity: 0.13;
-            z-index: 0;
-        }
-        #skills > * { position: relative; z-index: 1; }
-        #about h3,
-        .skills-heading,
-        .project-3d-heading {
-            font-size: 2.4em;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #1565c0;
-            margin-bottom: 18px;
-            text-shadow:
-                1px 1px 0 #42a5f5,
-                2px 2px 0 #42a5f5,
-                4px 4px 12px #1565c088;
-        }
-        .skills-heading { margin-bottom: 4px; }
-        .skills-subheading {
-            font-size: 1.15em;
-            font-weight: bold;
-            margin-bottom: 12px;
-            margin-top: 22px;
-            padding: 9px 24px;
-            border-radius: 32px;
-            display: inline-block;
-            background: linear-gradient(120deg, #e3f2fd 65%, #fff 100%);
-            color: #222 !important;
-            border: 2px solid #1565c0;
-            box-shadow: 0 2px 10px #1565c033;
-            letter-spacing: 1px;
-        }
-        .circle-skill-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 18px;}
-        .circle-skill-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 62px;
-            min-height: 62px;
-            border-radius: 50%;
-            background: linear-gradient(120deg, #42a5f5 60%, #1565c0 100%);
-            color: #fff;
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 0;
-            box-shadow: 0 2px 8px #42a5f566;
-            border: 2px solid #fff;
-            transition: 0.2s;
-            text-align: center;
-            padding: 0 10px;
-            cursor: default;
-        }
-        .circle-skill-btn:hover { filter: brightness(0.94); transform: scale(1.07);}
-        .skill-horizontal-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 18px;}
-        .skill-horizontal-btn {
-            background: linear-gradient(90deg,#1565c0,#42a5f5); color: #fff; border: none; padding: 9px 18px; border-radius: 18px; font-weight: 500; font-size: 15px; cursor: default;
-            box-shadow: 0 2px 6px #0001; transition: 0.2s;
-        }
-        .skill-horizontal-btn:hover { filter: brightness(0.97); transform: scale(1.08);}
-        .skill-btns { display:none; }
-        .project-img {
-            width: 100%; max-width: 380px; display: block; margin: 0 auto 20px auto; border-radius: 12px; box-shadow: 0 2px 8px #0002;
-        }
-        .resume-btn {
-            margin-top: 24px; display: flex; justify-content: center;
-        }
-        .resume-btn a, .read-more-btn {
-            background: #469d49; color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-size: 1.07em; font-weight: 600; display: inline-block;
-        }
-        .resume-btn a:hover, .read-more-btn:hover { background: #287d29;}
-        .read-more-btn { margin-top: 18px; background: #1565c0; }
-        .read-more-btn:hover { background: #0a3977;}
-        .edu-list { margin-top: 6px;}
-        .portfolio-header-line {
-            display: flex;
-            align-items: center;
-            font-size: 1.15em;
-            font-weight: bold;
-            margin-bottom: 18px;
-            margin-top: -8px;
-            gap: 18px;
-        }
-        .portfolio-header-name {
-            font-weight: bold;
-            color: #1565c0;
-            font-size: 1.09em;
-            letter-spacing: 1px;
-            margin-right: 10px;
-        }
-        .portfolio-header-title {
-            font-weight: bold;
-            color: #222;
-            font-size: 1.09em;
-        }
-        @media (max-width: 600px) {
-            .portfolio-header-line { font-size: 1em; gap: 9px;}
-            .portfolio-header-name { font-size: 1em;}
-            .portfolio-header-title { font-size: 1em;}
-            #about h3, .skills-heading, .project-3d-heading { font-size: 1.3em; }
-        }
-        .project-3d-heading {
-            text-align: center;
-            margin-bottom: 18px;
-            text-transform: uppercase;
-            position: relative;
-            perspective: 400px;
-            perspective-origin: center;
-            animation: project3d 3.5s cubic-bezier(.14,.7,.49,1) infinite;
-        }
-        @keyframes project3d {
-            0%, 100% { transform: rotateX(0deg) rotateY(0deg) scale(1.08);}
-            25% { transform: rotateX(18deg) rotateY(-6deg) scale(1.13);}
-            50% { transform: rotateX(-14deg) rotateY(9deg) scale(1.08);}
-            75% { transform: rotateX(10deg) rotateY(-8deg) scale(1.12);}
-        }
-        .project-card-3d {
-            background: linear-gradient(120deg, #e3f2fd 70%, #fff 100%), url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #1565c022, 0 8px 36px #42a5f533;
-            padding: 32px 32px 28px 32px;
-            margin-bottom: 24px;
-            position: relative;
-            max-width: 820px;
-            margin-left: auto;
-            margin-right: auto;
-            overflow: hidden;
-        }
-        .project-card-3d:before {
-            content: "";
-            position: absolute;
-            top: -30px; left: -60px;
-            width: 160px; height: 160px;
-            background: radial-gradient(circle, #1565c0 38%, transparent 80%);
-            opacity: 0.11;
-            z-index: 0;
-        }
-        .project-card-3d:after {
-            content: "";
-            position: absolute;
-            bottom: -40px; right: -80px;
-            width: 180px; height: 120px;
-            background: radial-gradient(circle, #42a5f5 38%, transparent 80%);
-            opacity: 0.10;
-            z-index: 0;
-        }
-        .project-name {
-            font-size: 1.4em;
-            color: #1565c0;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 13px;
-            text-align: center;
-            text-transform: capitalize;
-            position: relative;
-            z-index: 1;
-        }
-        .project-detail {
-            font-size: 1.09em;
-            color: #222;
-            line-height: 1.7;
-            margin-bottom: 0;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            padding: 0 8px;
-        }
-        .project-btn-row {
-            margin-top: 22px;
-            display: flex;
-            justify-content: center;
-        }
-        .project-btn {
-            background: #1565c0;
-            color: #fff;
-            padding: 10px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.07em;
-            font-weight: 600;
-            box-shadow: 0 2px 8px #1565c055;
-            transition: background 0.18s, transform 0.20s;
-            display: inline-block;
-            margin: 0 auto;
-        }
-        .project-btn:hover { background: #0a3977; transform: scale(1.06);}
-        /* Internship Cards */
-        .internship-cards-row {
-            display:flex; flex-wrap:wrap; gap:30px; justify-content:center;
-        }
-        .internship-card {
-            background:#fff; border-radius:18px; box-shadow:0 4px 24px #1565c022;
-            max-width:410px; width:100%; overflow:hidden; position:relative;
-            margin-bottom:18px;
-        }
-        .internship-card img {
-            width:100%; height:180px; object-fit:cover;
-        }
-        .internship-card-content {
-            padding:24px 22px 18px 22px;
-        }
-        .internship-card-title {
-            font-size:1.18em; font-weight:bold; color:#1565c0; margin-bottom:8px;
-        }
-        .internship-card-company {
-            font-weight:600; color:#222; margin-bottom:2px;
-        }
-        .internship-card-meta {
-            font-size:0.97em; color:#444;
-        }
-        .internship-read-btn {
-            margin:16px 0 0 0; background:linear-gradient(120deg,#42a5f5 60%,#1565c0 100%);
-            color:#fff; padding:10px 28px; border:none; border-radius:8px; font-size:1em; font-weight:600;
-            box-shadow:0 2px 8px #42a5f533; cursor:pointer; transition:background 0.18s,transform 0.20s;
-        }
-        .internship-read-btn:hover { background:#0a3977; transform:scale(1.06);}
-        .internship-details {
-            display:none; margin-top:18px; background:#e3f2fd; border-radius:12px; padding:15px 10px; box-shadow:0 1px 8px #1565c033;
-        }
-        .internship-details ul { margin-top:8px; padding-left:16px;}
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var flipContainer = document.querySelector('.profile-flip-container');
-            if(flipContainer){
-                flipContainer.addEventListener('click', function() {
-                    flipContainer.classList.toggle('flipped');
-                });
-            }
-            // Internship card read more toggle
-            window.showInternshipDetails = function(id) {
-                document.getElementById(id).style.display = 'block';
-                document.getElementById(id + '-btn').style.display = 'none';
-            }
-        });
-    </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MALIK AAMIR HUSSAIN — Portfolio</title>
+  <style>
+    /* ---------- base ---------- */
+    :root{
+      --nav-dark: #0f2133;   /* very dark navy */
+      --hero-deep: #0f3253;  /* deep blue hero */
+      --accent-blue: #10b0ff;
+      --accent-pink: #f48fb1;
+      --card-bg: #ffffff;
+      --muted: #f5f7fb;
+      --text-dark: #0e2130;
+    }
+    html,body{height:100%;margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;color:var(--text-dark);background:var(--muted);}
+    a{color:inherit;text-decoration:none}
+
+    /* ---------- top nav ---------- */
+    header{background:var(--nav-dark);color:#fff;position:sticky;top:0;z-index:50}
+    .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 20px}
+    .brand{font-weight:800;font-size:1.35rem;letter-spacing:0.6px}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;align-items:center}
+    nav a{color:#fff;opacity:0.95;font-weight:600}
+    nav a:hover{opacity:1;text-decoration:underline}
+
+    /* ---------- hero ---------- */
+    .hero{
+      background:
+        linear-gradient(120deg, rgba(19,84,133,0.95) 0%, rgba(13,45,84,0.95) 100%),
+        url('https://www.transparenttextures.com/patterns/pw-maze-white.png');
+      color:#fff;
+      padding:50px 18px 70px;
+      box-shadow: inset 0 -10px 60px rgba(0,0,0,0.08);
+    }
+    .hero-inner{max-width:1100px;margin:0 auto;text-align:center;position:relative}
+    .role-label{display:inline-block;color:#d8eaf7;font-weight:700;margin-bottom:8px;opacity:0.9}
+    .hero-title{font-size:3.3rem;font-weight:900;letter-spacing:3px;margin:6px 0 10px}
+    .hero-sub{display:flex;align-items:center;gap:10px;justify-content:center;color:#e6f4ff;font-weight:600;margin-bottom:26px}
+    .hero-sub .icon{width:26px;height:26px;display:inline-block;background:rgba(255,255,255,0.08);border-radius:6px;line-height:26px;text-align:center}
+
+    /* ---------- circle links (pills) ---------- */
+    .links-row{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center}
+    .pill{
+      padding:14px 28px;border-radius:40px;color:#fff;font-weight:700;display:inline-block;background:linear-gradient(90deg,var(--accent-blue), var(--accent-pink));
+      box-shadow:0 8px 20px rgba(16,176,255,0.12);border:2px solid rgba(255,255,255,0.06);transition:transform .18s,box-shadow .18s;
+    }
+    .pill:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,176,255,0.16)}
+    .pill.small{padding:10px 20px;font-weight:700}
+
+    /* ---------- content sections ---------- */
+    main{max-width:1000px;margin:-32px auto 80px;padding:0 18px}
+    section{background:var(--card-bg);border-radius:12px;padding:30px;margin-bottom:22px;box-shadow:0 6px 30px rgba(16,41,64,0.06)}
+    section h3{color:var(--hero-deep);margin-top:0;font-size:1.6rem}
+    #about p{color:#263238;line-height:1.7}
+
+    /* ---------- flip card profile (front/back) ---------- */
+    .profile-flip-container{width:480px;max-width:96vw;margin:-90px auto 18px;perspective:1000px}
+    .profile-flip-card{width:100%;height:160px;transition:transform .8s;transform-style:preserve-3d;border-radius:18px;cursor:pointer}
+    .profile-front,.profile-back{
+      position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 40px rgba(3,19,34,0.08)
+    }
+    .profile-front{
+      background:linear-gradient(120deg,#e3f2fd 60%, #fff 120%), url('https://www.transparenttextures.com/patterns/pw-maze-white.png');
+      color:var(--hero-deep);z-index:2;
+    }
+    .profile-front .title{font-weight:900;font-size:1.15rem;letter-spacing:1px}
+    .profile-front .subtitle{background:linear-gradient(90deg,#0a2f5a 55%, #42a5f5 100%);color:#fff;padding:6px 16px;border-radius:8px;margin-top:8px;font-weight:700}
+    .profile-back{background:linear-gradient(120deg,#fafafa 40%, #e3f2fd 100%);color:var(--hero-deep);transform:rotateY(180deg);border:2px solid #42a5f5}
+    .profile-back .skills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+
+    .flipped .profile-flip-card{transform:rotateY(-180deg)}
+
+    /* ---------- internship cards small ---------- */
+    .internship-cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+    .intern-card{width:420px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 12px 30px rgba(7,18,35,0.06)}
+    .intern-card img{width:100%;height:180px;object-fit:cover}
+    .intern-desc{padding:18px}
+
+    /* ---------- responsive ---------- */
+    @media (max-width:820px){
+      .hero-title{font-size:2.1rem}
+      .profile-flip-container{margin-top:-60px}
+      .profile-flip-card{height:140px}
+    }
+    @media (max-width:480px){
+      .hero{padding:34px 12px 48px}
+      .nav-inner{padding:12px}
+      .hero-title{font-size:1.5rem}
+      .links-row{gap:12px}
+      .pill{padding:10px 16px}
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#internship">Internship</a>
-            <a href="#certificates">Certificates</a>
-            <a href="#education">Education</a>
-            <a href="#resume">Resume</a>
-        </nav>
-    </header>
-    <!-- Flip Card Profile Section -->
-    <div class="profile-flip-container" title="Click to flip and see skills">
-        <div class="profile-flip-card">
-            <!-- Front Side -->
-            <div class="profile-front">
-                <div class="bg-shape1"></div>
-                <div class="bg-shape2"></div>
-                <div class="profile-title">AAMIR HUSSAIN</div>
-                <div class="profile-subtitle">DIGITAL MARKETING SPECIALIST</div>
-                <div class="profile-flip-hint">Click to see my skills</div>
-            </div>
-            <!-- Back Side -->
-            <div class="profile-back">
-                <div class="profile-back-title">TECHNICAL SKILLS</div>
-                <div class="profile-back-skills">
-                    <span class="profile-back-skill-btn">Meta Ads</span>
-                    <span class="profile-back-skill-btn">Google Ads</span>
-                    <span class="profile-back-skill-btn">Facebook Business Manager</span>
-                    <span class="profile-back-skill-btn">Facebook</span>
-                    <span class="profile-back-skill-btn">Instagram</span>
-                    <span class="profile-back-skill-btn">TikTok</span>
-                    <span class="profile-back-skill-btn">LinkedIn</span>
-                    <span class="profile-back-skill-btn">Google Analytics</span>
-                    <span class="profile-back-skill-btn">MS Excel</span>
-                    <span class="profile-back-skill-btn">WordPress</span>
-                    <span class="profile-back-skill-btn">Meta Insights</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="circle-links-bg bottom-circles">
-        <div class="circle-links">
-            <a href="mailto:malikaamirhussain2002@gmail.com" target="_blank" class="circle-btn gmail">
-                <span>Email</span>
-            </a>
-            <a href="https://www.linkedin.com/in/aamirdigitalmarketer/" target="_blank" class="circle-btn linkedin">
-                <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com/aamirhussain2002" target="_blank" class="circle-btn github">
-                <span>GitHub</span>
-            </a>
-            <a href="tel:+923078077765" target="_blank" class="circle-btn phone">
-                <span>Mobile</span>
-            </a>
-            <a href="https://maps.google.com/?q=Pakistan" target="_blank" class="circle-btn location">
-                <span>Pakistan</span>
-            </a>
-            <a href="https://www.canva.com/design/DAGswSTfhEE/_9SBy_fGhiGGz2PLZT--EQ/view?utm_content=DAGswSTfhEE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3010a0c276" target="_blank" class="circle-btn resume">
-                <span>Resume</span>
-            </a>
-            <a href="https://github.com/aamirhussain2002/DIGITAL-BRAND-LAUNCH-CAMPAIGN-STRATEGY" target="_blank" class="circle-btn project">
-                <span>Project</span>
-            </a>
-        </div>
-    </div>
-    <div class="portfolio-header-line">
-        <span class="portfolio-header-name"><b>AAMIR HUSSAIN</b></span>
-        <span class="portfolio-header-title"><b>Portfolio</b></span>
-    </div>
-    <section id="about">
-        <h3>ABOUT</h3>
-        <p>
-            I am a Digital Marketing Specialist focused on Google Ads, Meta Ads, and social media campaigns. I create content for web and social platforms, using data to improve performance and reach the right audience. My content aligns with brand strategy and user intent. Alongside my marketing career, I am undergoing clinical training in optometry. My goal is to lead digital campaigns that deliver real business value.
-        </p>
-    </section>
-    <section id="skills" class="skills-section">
-        <div class="skills-heading">TECHNICAL SKILLS</div>
-        <div class="skills-subheading">DIGITAL MARKETING TOOLS</div>
-        <div class="circle-skill-row">
-            <div class="circle-skill-btn">Meta Ads</div>
-            <div class="circle-skill-btn">Google Ads</div>
-            <div class="circle-skill-btn">Facebook Business Manager</div>
-        </div>
-        <div class="skills-subheading">SOCIAL MEDIA PLATFORMS</div>
-        <div class="circle-skill-row">
-            <div class="circle-skill-btn">Facebook</div>
-            <div class="circle-skill-btn">Instagram</div>
-            <div class="circle-skill-btn">TikTok</div>
-            <div class="circle-skill-btn">LinkedIn</div>
-        </div>
-        <div class="skills-subheading">STRATEGY AND ANALYSIS</div>
-        <div class="circle-skill-row">
-            <div class="circle-skill-btn">Google Analytics</div>
-            <div class="circle-skill-btn">MS Excel</div>
-            <div class="circle-skill-btn">WordPress</div>
-            <div class="circle-skill-btn">Meta Insights</div>
-        </div>
-    </section>
-    <section id="projects">
-        <div class="project-3d-heading">PROJECT</div>
-        <div class="project-card-3d">
-            <div class="project-name">Digital Brand Launch & Marketing Strategy</div>
-            <div class="project-detail">
-                Designed and executed a multi-platform digital campaign for a new brand launch across Facebook, Instagram, TikTok, and YouTube. <br>
-                Developed SMART objectives for brand awareness and customer acquisition. <br>
-                Led audience segmentation, competitor SWOT analysis, and brand key development with a compelling tagline. <br>
-                Created a 2-week content calendar featuring teasers, reels, and testimonials.<br>
-                Produced 30-60 sec Digital Video Commercials (DVCs) for YouTube and Facebook.<br>
-                Boosted ads and tracked key KPIs including reach, engagement, CTR, and conversions.
-            </div>
-            <div class="project-btn-row">
-                <a class="project-btn" href="https://github.com/aamirhussain2002/DIGITAL-BRAND-LAUNCH-CAMPAIGN-STRATEGY" target="_blank">Read More</a>
-            </div>
-        </div>
-    </section>
-    <!-- Redesigned Internship Section Start -->
-    <section id="internship">
-        <h3 style="font-size:2.4em; color:#1565c0; margin-bottom: 24px; text-shadow:1px 1px 0 #42a5f5,2px 2px 0 #42a5f5,4px 4px 12px #1565c088;">
-            Internships
-        </h3>
-        <div class="internship-cards-row">
-            <!-- M Tech Solutions Internship Card -->
-            <div class="internship-card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Digital Marketing Intern">
-                <div class="internship-card-content">
-                    <div class="internship-card-title">Digital Marketing Intern</div>
-                    <div class="internship-card-company">M Tech Solutions · Internship</div>
-                    <div class="internship-card-meta">
-                        Aug 2025 - Present<br>
-                        Islāmābād, Pakistan · On-site
-                    </div>
-                    <button id="intern1-details-btn" onclick="showInternshipDetails('intern1-details')" class="internship-read-btn">
-                        Read More
-                    </button>
-                    <div id="intern1-details" class="internship-details">
-                        <p>
-                            As a Digital Marketing Intern, I actively contribute to the planning, execution, and optimization of Google Ads campaigns. Working under the supervision of senior marketing strategists, I assist in driving targeted traffic, generating quality leads, and improving ad performance through data-driven decision-making. This role has given me hands-on experience in PPC advertising, audience targeting, and campaign analytics, enhancing my skills in digital advertising and performance marketing.
-                        </p>
-                        <b>Key Responsibilities &amp; Skills:</b>
-                        <ul>
-                            <li>Create, manage, and optimize Google Ads and Meta Ads campaigns to improve ROI.</li>
-                            <li>Conduct keyword research and audience segmentation for Search, Display, and Social Media campaigns.</li>
-                            <li>Develop engaging ad creatives, headlines, and A/B testing strategies to improve CTR and conversions.</li>
-                            <li>Monitor campaign performance metrics (CPC, CTR, ROAS) and adjust bids, targeting, and creatives accordingly.</li>
-                            <li>Implement remarketing strategies to re-engage potential customers.</li>
-                            <li>Generate detailed campaign reports and present optimization recommendations to the marketing team.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- Alshifa Trust Eye Hospital Internship Card -->
-            <div class="internship-card">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Trainee Optometrist">
-                <div class="internship-card-content">
-                    <div class="internship-card-title">Trainee Optometrist</div>
-                    <div class="internship-card-company">Alshifa Trust Eye Hospital · Internship</div>
-                    <div class="internship-card-meta">
-                        2023 - 2026<br>
-                        Rawalpindi, Pakistan
-                    </div>
-                    <button id="intern2-details-btn" onclick="showInternshipDetails('intern2-details')" class="internship-read-btn">
-                        Read More
-                    </button>
-                    <div id="intern2-details" class="internship-details">
-                        <ul>
-                            <li>Conducted eye exams: Refraction, Retinoscopy, Orthoptic assessment</li>
-                            <li>Patient communication and data documentation</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Redesigned Internship Section End -->
-    <section id="certificates">
-        <h3>Certificates</h3>
-        <div class="cert-btns">
-            <button class="cert-btn">Digital Marketing Certificate – IEC</button>
-            <button class="cert-btn">Digital Marketing Certified – IEC</button>
-            <button class="cert-btn">HubSpot Academy</button>
-            <button class="cert-btn">Top Scorer FSc Pre Medical</button>
-        </div>
-        <div class="cert-detail"><strong>Digital Marketing Certificate – IEC:</strong> Certificate for mastering Google Ads, Meta Ads, Campaign Planning & Analytics.</div>
-        <div class="cert-detail"><strong>Digital Marketing Certified – IEC:</strong> Earned for advanced digital marketing skills and strategy implementation.</div>
-        <div class="cert-detail"><strong>Certificate of Achievements – HubSpot Academy:</strong> Awarded for completing marketing and analytics modules.</div>
-        <div class="cert-detail"><strong>Top Scorer in FSc Pre Medical:</strong> Govt Higher Secondary School, top marks in Pre-Medical.</div>
-    </section>
-    <section id="education">
-        <h3>Education</h3>
-        <ul class="edu-list">
-            <li>Digital Marketing – Institute of Emerging Careers (IEC), Mianwali (Apr 2025 – Sep 2025)</li>
-            <li>Bachelor of Optometry & Orthoptics – University of Health Sciences, Lahore (2023 – 2026)</li>
-            <li>FSc (Pre-Medical) – Govt Higher Secondary School, Kamar Mushani (2019 – 2021)</li>
-            <li>Matric Science Group – Govt High School Trag, Trag Sharif (2017 – 2019)</li>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">Syed Hur Abbas Naqvi</div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#internship">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#resume">View My CV</a></li>
         </ul>
-    </section>
-    <section id="resume">
-        <h3>Resume</h3>
-        <div class="resume-btn">
-            <a href="https://www.canva.com/design/DAGswSTfhEE/_9SBy_fGhiGGz2PLZT--EQ/view?utm_content=DAGswSTfhEE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3010a0c276" target="_blank">Download Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="hero">
+    <div class="hero-inner">
+      <div style="display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto 18px;">
+        <div class="role-label">Data Analyst Portfolio</div>
+      </div>
+
+      <!-- Big centered name like screenshot -->
+      <div class="hero-title">SYED HUR ABBAS NAQVI</div>
+      <div class="hero-sub">
+        <span class="icon">📊</span>
+        <div>Data Analytics for Smarter Decisions</div>
+      </div>
+
+      <!-- clickable pill links -->
+      <div class="links-row" role="navigation" aria-label="contact links">
+        <!-- Replace hrefs with your real links -->
+        <a class="pill" href="mailto:your-email@example.com" target="_blank" rel="noopener">Gmail</a>
+        <a class="pill" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="pill" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a class="pill" href="#" target="_blank" rel="noopener">Credly</a>
+        <a class="pill" href="tel:+923036098700" target="_blank" rel="noopener">+92 3036098700</a>
+        <a class="pill" href="https://maps.google.com/?q=Pakistan" target="_blank" rel="noopener">Pakistan</a>
+      </div>
+
+      <!-- flip profile (click to flip) -->
+      <div class="profile-flip-container" title="Click to flip and see skills" style="margin-top:26px;">
+        <div class="profile-flip-card">
+          <div class="profile-front">
+            <div class="title">SYED HUR ABBAS NAQVI</div>
+            <div class="subtitle">Data Analyst • Business Intelligence</div>
+            <div style="font-size:13px;color:#287d29;background:#e3f2fd;border-radius:8px;padding:6px 12px;margin-top:8px;font-weight:600">Click to see my skills</div>
+          </div>
+          <div class="profile-back">
+            <div style="font-weight:800;margin-bottom:8px">TECHNICAL SKILLS</div>
+            <div class="skills" style="gap:10px">
+              <span style="background:linear-gradient(120deg,#42a5f5,#1565c0);color:#fff;padding:6px 12px;border-radius:20px;font-weight:700">Python</span>
+              <span style="background:linear-gradient(120deg,#42a5f5,#1565c0);color:#fff;padding:6px 12px;border-radius:20px;font-weight:700">SQL</span>
+              <span style="background:linear-gradient(120deg,#42a5f5,#1565c0);color:#fff;padding:6px 12px;border-radius:20px;font-weight:700">Tableau</span>
+              <span style="background:linear-gradient(120deg,#42a5f5,#1565c0);color:#fff;padding:6px 12px;border-radius:20px;font-weight:700">Pandas</span>
+              <span style="background:linear-gradient(120deg,#42a5f5,#1565c0);color:#fff;padding:6px 12px;border-radius:20px;font-weight:700">Excel</span>
+            </div>
+          </div>
         </div>
+      </div>
+
+    </div>
+  </section>
+
+  <main>
+    <section id="about">
+      <h3>About Me</h3>
+      <p>
+        I’m a data-focused professional who turns raw data into insights that help businesses make smarter decisions.
+        I specialize in data cleaning, analysis, visualization and building dashboards for stakeholders.
+        Replace this text with your personal summary and achievements.
+      </p>
     </section>
+
+    <section id="skills">
+      <h3>Skills</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="background:linear-gradient(120deg,#e3f2fd,#fff);padding:12px 16px;border-radius:10px;font-weight:700;color:var(--hero-deep)">Python</div>
+        <div style="background:linear-gradient(120deg,#e3f2fd,#fff);padding:12px 16px;border-radius:10px;font-weight:700;color:var(--hero-deep)">SQL</div>
+        <div style="background:linear-gradient(120deg,#e3f2fd,#fff);padding:12px 16px;border-radius:10px;font-weight:700;color:var(--hero-deep)">Tableau</div>
+        <div style="background:linear-gradient(120deg,#e3f2fd,#fff);padding:12px 16px;border-radius:10px;font-weight:700;color:var(--hero-deep)">Excel</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h3>Projects</h3>
+      <div style="text-align:center">
+        <div style="max-width:820px;margin:0 auto;background:linear-gradient(120deg,#eaf6ff,#fff);padding:22px;border-radius:12px">
+          <div style="font-weight:800;color:var(--hero-deep);font-size:1.2rem">Sales Dashboard & Forecasting</div>
+          <p style="margin:8px 0 0;color:#1e2e3b">Built interactive dashboards and forecasting models to help product teams prioritize SKUs and increase revenue.</p>
+          <div style="margin-top:12px"><a class="pill small" href="#" target="_blank">Read More</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="internship">
+      <h3>Experience</h3>
+      <div class="internship-cards">
+        <div class="intern-card">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1200&q=80" alt="work">
+          <div class="intern-desc">
+            <div style="font-weight:800;color:var(--hero-deep)">Data Analyst Intern</div>
+            <div style="color:#546e7a;margin-top:6px">Company Name · Internship · 2024 - Present</div>
+            <p style="margin-top:8px;color:#263238">Worked on data pipelines, built dashboards and presented weekly KPI reports to the product team.</p>
+          </div>
+        </div>
+
+        <div class="intern-card">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80" alt="work">
+          <div class="intern-desc">
+            <div style="font-weight:800;color:var(--hero-deep)">Trainee Analyst</div>
+            <div style="color:#546e7a;margin-top:6px">Another Org · 2022 - 2023</div>
+            <p style="margin-top:8px;color:#263238">Assisted in data cleaning, ETL tasks and dashboard maintenance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h3>Education</h3>
+      <ul style="margin:0;padding-left:18px">
+        <li>Bachelor in Statistics — University Name (2020–2024)</li>
+        <li>Data Science Bootcamp — Institute (2023)</li>
+      </ul>
+    </section>
+
+    <section id="resume">
+      <h3>Resume</h3>
+      <div style="display:flex;justify-content:center">
+        <!-- replace link with your resume link -->
+        <a class="pill" href="#" target="_blank">View / Download Resume</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // flip card toggle
+    document.addEventListener('click', function(e){
+      const container = document.querySelector('.profile-flip-container');
+      // toggle when clicking the container or front/back
+      if (e.target.closest('.profile-flip-container')) {
+        container.classList.toggle('flipped');
+      }
+    });
+  </script>
 </body>
 </html>
