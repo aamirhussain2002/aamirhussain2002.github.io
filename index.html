@@ -18,8 +18,9 @@
       --accent-strong: #083759; /* dark blue edge color */
       --light-blue: #e8f6ff;    /* requested light blue backgrounds */
       --skill-light: #f0fbff;   /* skill card light background */
-      --read-more-bg: #1565c0;  /* read more button color */
+      --read-more-bg: linear-gradient(90deg,#10b0ff,#f48fb1);  /* gradient button color */
       --read-more-hover: #0a3977;
+      --card-radius: 12px;
     }
     html,body{
       height:100%;
@@ -75,7 +76,7 @@
     /* ---------- main content ---------- */
     main{max-width:1000px;margin:-28px auto 80px;padding:0 18px}
 
-    section{background:var(--card-bg);border-radius:12px;padding:26px;margin-bottom:22px;box-shadow:0 6px 30px rgba(16,41,64,0.06)}
+    section{background:var(--card-bg);border-radius:var(--card-radius);padding:26px;margin-bottom:22px;box-shadow:0 6px 30px rgba(16,41,64,0.06)}
     section h3{color:var(--accent-strong);margin-top:0;font-size:1.6rem;font-weight:900}
 
     /* ---------- ABOUT: full-width professional card (light blue background + dark-blue edges) ---------- */
@@ -113,6 +114,7 @@
       cursor:pointer;
       box-shadow: 0 10px 28px rgba(9,55,102,0.12);
       transition: background .16s, transform .12s;
+      background-clip: padding-box;
     }
     .read-more-btn:hover{ background:var(--read-more-hover); transform:translateY(-2px) }
     .read-more-btn:focus{ outline:3px solid rgba(16,176,255,0.14); outline-offset:2px }
@@ -137,17 +139,51 @@
     .skill-list{margin:0;padding-left:18px;color:#184055;font-weight:700;line-height:1.6}
     .skill-list li{margin-bottom:6px;font-weight:600;font-size:0.95rem}
 
-    /* ---------- EXPERIENCE cards ---------- */
-    .experience-list{display:flex;flex-direction:column;gap:14px}
+    /* ---------- EXPERIENCE cards (friend-like layout for first card) ---------- */
+    .experience-list{display:flex;flex-direction:column;gap:18px}
+
     .exp-card{
       background:linear-gradient(180deg,#fff,#fbfdff);
-      border-radius:10px;padding:14px;border:1px solid rgba(6,40,70,0.06);
+      border-radius:10px;
+      overflow:hidden;
       box-shadow:0 8px 22px rgba(6,40,70,0.04);
+      border:1px solid rgba(6,40,70,0.06);
     }
+
+    /* Top hero block like friend's layout */
+    .exp-card-hero{
+      background:#fff;
+      padding:18px;
+      text-align:center;
+      border-bottom:1px solid rgba(6,40,70,0.06);
+    }
+    .exp-hero-img{
+      display:block;
+      margin:0 auto 10px;
+      width:240px;
+      max-width:92%;
+      height:auto;
+      border-radius:10px;
+      object-fit:cover;
+      box-shadow:0 8px 20px rgba(6,40,70,0.06);
+      border:1px solid rgba(6,40,70,0.04);
+      background:#fff;
+    }
+    .exp-hero-role{
+      margin-top:6px;
+      font-weight:900;
+      color:#0b3b5a;
+      font-size:1.05rem;
+      letter-spacing:1px;
+    }
+
+    .exp-card-body{padding:16px}
     .exp-header{display:flex;flex-direction:column;gap:6px}
     .exp-title{font-weight:900;color:#0b3b5a;font-size:1.05rem}
-    .exp-meta{color:#546e7a;font-weight:700}
-    .exp-actions{margin-top:10px}
+    .exp-meta{color:#0b3b5a;font-weight:800}
+    .exp-submeta{color:#546e7a;font-weight:700;margin-top:4px}
+
+    .exp-actions{margin-top:12px}
     .exp-more{max-height:0;overflow:hidden;transition:max-height .36s ease;padding-top:0}
     .exp-more.expanded{max-height:2000px;padding-top:12px}
 
@@ -155,32 +191,29 @@
     .exp-more ul{margin-top:8px;padding-left:18px}
 
     .exp-toggle{
-      background:transparent;border:0;color:var(--read-more-bg);font-weight:800;cursor:pointer;padding:8px 10px;border-radius:8px;
-      transition:background .12s, transform .12s;
-    }
-    .exp-toggle:hover{background:rgba(20,107,187,0.06);transform:translateY(-2px)}
-
-    /* image used for M Tech Solution (placed above and below) */
-    .exp-image{
-      display:block;
-      max-width:220px;
-      width:100%;
-      height:auto;
-      margin:12px auto;
+      background:var(--read-more-bg);
+      color:#fff;
+      border:none;
+      padding:10px 14px;
       border-radius:8px;
-      object-fit:cover;
-      border:2px solid rgba(6,40,70,0.06);
-      box-shadow:0 8px 20px rgba(6,40,70,0.06);
-      background:#fff;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform .12s;
+      box-shadow:0 8px 20px rgba(9,55,102,0.12);
     }
+    .exp-toggle:hover{ transform:translateY(-2px) }
 
-    /* ---------- education styling (in-list institute line styling) ---------- */
+    .exp-icons{display:flex;gap:10px;justify-content:center;margin-top:8px}
+    .exp-icons img{width:26px;height:26px}
+
+    /* ---------- education styling ---------- */
     .education-list li{margin-bottom:8px;font-weight:700;color:#113449}
     .education-inst{display:block;font-weight:600;color:#546e7a;margin-top:4px}
 
     /* responsive */
     @media (max-width:980px){
       .skills-grid{grid-template-columns:1fr}
+      .exp-hero-img{width:200px}
     }
     @media (max-width:480px){
       .hero-title{font-size:1.6rem}
@@ -189,7 +222,7 @@
       .pill{padding:8px 12px;font-size:0.9rem}
       .pill .pill-icon{width:16px;height:16px}
       main{margin-top:-10px}
-      .exp-image{max-width:160px}
+      .exp-hero-img{width:160px}
     }
   </style>
 </head>
@@ -226,39 +259,17 @@
         <a class="pill" href="mailto:altafwan1974@gmail.com" target="_blank" rel="noopener" aria-label="Email">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 13.065L2.4 6.3A2 2 0 0 1 4 4h16a2 2 0 0 1 1.6 2.3L12 13.065z'/><path d='M22 8.4v9.2A2.4 2.4 0 0 1 19.6 20H4.4A2.4 2.4 0 0 1 2 17.6V8.4l9.6 6.765a1.6 1.6 0 0 0 1.6 0L22 8.4z' opacity='0.9'/></svg>" alt="">
           <span class="pill-label">Gmail</span>
-          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D14836'><path d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 6l8 5 8-5v-.01L12 11 4 5.99V6z'/></svg>" alt=""><span>altafwan1974@gmail.com</span></span>
         </a>
 
         <a class="pill" href="https://www.linkedin.com/in/aamirdigitalmarketer/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-9 7H7v7h3v-7zm1 0v7h3v-4.2c0-1.6 2-1.7 2 0V17h3v-4.8c0-3.7-4.1-3.6-5.5-1.8V10h-3zM8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z'/></svg>" alt="">
           <span class="pill-label">LinkedIn</span>
-          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230077B5'><path d='M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.5 9H6v7h2.5V9zM7.25 7.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM18 16.5H15.5v-3c0-.86-.7-1.25-1-1.25-.6 0-1 .4-1 1.25v3H10V9h2.4v1.1c.4-.7 1.2-1.1 2-1.1 1.7 0 3 1 3 3.5v4z'/></svg>" alt=""><span>linkedin.com/in/aamirdigitalmarketer</span></span>
         </a>
 
         <a class="pill" href="https://github.com/aamirhussain2002" target="_blank" rel="noopener" aria-label="GitHub">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 .5C5.7.5.9 5.3.9 11.6c0 4.6 3 8.5 7.1 9.9.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.9.7 2.6.9.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.2-4.7-5.4 0-1.2.4-2.1 1.2-2.9-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.1 1-.3 2-.5 3.1-.5s2.1.2 3.1.5c2.3-1.4 3.3-1.1 3.3-1.1.6 1.6.2 2.9.1 3.2.8.8 1.2 1.7 1.2 2.9 0 4.2-2.4 5.1-4.7 5.4.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.7.5 4.1-1.4 7.1-5.3 7.1-9.9C23.1 5.3 18.3.5 12 .5z'/></svg>" alt="">
           <span class="pill-label">GitHub</span>
-          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'><path d='M12 .5C5.7.5.9 5.3.9 11.6c0 4.6 3 8.5 7.1 9.9.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.9.7 2.6.9.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.2-4.7-5.4 0-1.2.4-2.1 1.2-2.9-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.1 1-.3 2-.5 3.1-.5s2.1.2 3.1.5c2.3-1.4 3.3-1.1 3.3-1.1.6 1.6.2 2.9.1 3.2.8.8 1.2 1.7 1.2 2.9 0 4.2-2.4 5.1-4.7 5.4.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.7.5 4.1-1.4 7.1-5.3 7.1-9.9C23.1 5.3 18.3.5 12 .5z'/></svg>" alt=""><span>github.com/aamirhussain2002</span></span>
         </a>
-
-        <a class="pill" href="#" target="_blank" rel="noopener" aria-label="Credly">
-          <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 2l2.9 5.88L21 9.27l-4.5 4.38L17.8 21 12 17.77 6.2 21l1.3-7.35L3 9.27l6.1-1.39L12 2z'/></svg>" alt="">
-          <span class="pill-label">Credly</span>
-          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233e7bd6'><path d='M12 2l2.9 5.88L21 9.27l-4.5 4.38L17.8 21 12 17.77 6.2 21l1.3-7.35L3 9.27l6.1-1.39L12 2z'/></svg>" alt=""><span>Credly Badges</span></span>
-        </a>
-
-        <a class="pill" href="tel:+923465124043" target="_blank" rel="noopener" aria-label="Phone">
-          <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C9.39 21 3 14.61 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57.12.37.05.78-.24 1.05l-2.21 2.17z'/></svg>" alt="">
-          <span class="pill-label">+923465124043</span>
-          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23007A5A'><path d='M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C9.39 21 3 14.61 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57.12.37.05.78-.24 1.05l-2.21 2.17z'/></svg>" alt=""><span>Call / WhatsApp</span></span>
-        </a>
-
-        <a class="pill" href="https://maps.google.com/?q=Pakistan" target="_blank" rel="noopener" aria-label="Pakistan">
-          <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 2C8 2 5 5 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/></svg>" alt="">
-          <span class="pill-label">Pakistan</span>
-          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='3' fill='%23007A3D'/><path d='M12 5c.9 0 1.7.7 1.7 1.6 0 .9-.8 1.6-1.7 1.6s-1.7-.7-1.7-1.6C10.3 5.7 11.1 5 12 5z' fill='%23fff'/></svg>" alt=""><span>Pakistan</span></span>
-        </a>
-
       </div>
     </div>
   </section>
@@ -269,7 +280,6 @@
 
       <div class="about-grid" aria-hidden="false">
         <div class="about-left">
-          <!-- Initially visible portion (half) -->
           <p>
             I am a certified Digital Marketing professional, having successfully completed industry-recognized certifications from Google, IBM, University of Maryland, and Meta. My training covers essential skills including Meta Ads, Google Ads, social media marketing, project management, and content creation.
           </p>
@@ -278,7 +288,6 @@
             I further honed these skills during my Digital Marketing Internship at M Tech Solution, where I gained hands-on experience in planning, launching, and optimizing PPC campaigns across Google platforms. This role strengthened my expertise in campaign management, audience targeting, performance analysis, and data tracking through MS Excel.
           </p>
 
-          <!-- Hidden remainder (will expand when user clicks View more) -->
           <div id="about-more" class="about-more" aria-hidden="true">
             <p>
               In parallel, I am pursuing my bachelor's degree in optometry &amp; Orthoptics while gaining valuable clinical experience at a leading eye care facility. This unique combination of healthcare knowledge and digital marketing expertise enables me to bring a distinctive perspective—merging analytical thinking, technical precision, and creative problem-solving.
@@ -376,88 +385,102 @@
 
       <div class="experience-list">
 
-        <!-- 1. Google & Meta Ads Expert (M Tech Solution) - with image above and below -->
+        <!-- M Tech Solution: friend-style image block on top, then details below -->
         <div class="exp-card" id="exp-1">
-          <!-- image above (use the provided Image #2) -->
-          <!-- Replace the src value below with the actual uploaded filename or path for Image 2 -->
-          <img class="exp-image" src="images/mtech.jpg" alt="M Tech Solution logo / banner">
-
-          <div class="exp-header">
-            <div class="exp-title">Google & Meta Ads Expert</div>
-            <div class="exp-meta">M Tech Solution — Jan 2025 to Dec 2025</div>
+          <div class="exp-card-hero">
+            <!-- Use the image you uploaded (Image 4). Replace the src with the actual path/URL where Image 4 is hosted. -->
+            <img class="exp-hero-img" src="images/mtech-friend.jpg" alt="M Tech Solution / banner">
+            <div class="exp-hero-role">DATA ANALYST</div>
           </div>
 
-          <div class="exp-actions">
-            <button class="exp-toggle" data-target="exp-1-more" aria-expanded="false">View more</button>
-          </div>
+          <div class="exp-card-body">
+            <div class="exp-header">
+              <div class="exp-title">Google & Meta Ads Expert</div>
+              <div class="exp-meta">M Tech Solution</div>
+              <div class="exp-submeta">Jan 2025 — Dec 2025 • Onsite | Pakistan</div>
+            </div>
 
-          <div id="exp-1-more" class="exp-more" aria-hidden="true">
-            <p>Planned, launched, and managed Google Ads (PPC) campaigns and Meta advertising campaigns across Facebook and Instagram, optimizing for maximum ROI and conversion rates.</p>
-            <ul>
-              <li>Conducted comprehensive audience research and targeting to identify high-value customer segments and improve campaign performance.</li>
-              <li>Monitored and analyzed campaign metrics using Google Analytics and Meta Business Suite, providing data-driven insights for optimization.</li>
-              <li>Implemented A/B testing strategies for ad creatives, copy, and landing pages to improve CTR and reduce CPA.</li>
-              <li>Managed campaign budgets effectively, ensuring optimal allocation across search, display, and social media ad sets.</li>
-              <li>Created detailed performance reports using MS Excel, tracking KPIs including impressions, clicks, conversions, and ROAS.</li>
-              <li>Collaborated with cross-functional teams to align campaign strategies with business objectives and marketing goals.</li>
-              <li>Optimized existing campaigns through continuous monitoring, keyword refinement (Google Ads), and audience adjustments (Meta Ads).</li>
-              <li>Stayed updated with latest platform features, algorithm changes, and digital marketing trends to maintain competitive advantage.</li>
-            </ul>
+            <div class="exp-icons" aria-hidden="true">
+              <!-- small platform icons -->
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='%23007A5A'><circle cx='12' cy='12' r='10'/></svg>" alt="">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='%230077B5'><rect width='24' height='24' rx='3'/></svg>" alt="">
+              <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='%23EA4335'><path d='M0 0h24v24H0z' fill='none'/><circle cx='12' cy='12' r='10'/></svg>" alt="">
+            </div>
 
-            <!-- image below (same as above) -->
-            <img class="exp-image" src="images/mtech.jpg" alt="M Tech Solution logo / banner">
+            <div class="exp-actions">
+              <button class="exp-toggle" data-target="exp-1-more" aria-expanded="true">Hide Details</button>
+            </div>
+
+            <div id="exp-1-more" class="exp-more expanded" aria-hidden="false">
+              <p>Planned, launched, and managed Google Ads (PPC) campaigns and Meta advertising campaigns across Facebook and Instagram, optimizing for maximum ROI and conversion rates.</p>
+              <ul>
+                <li>Conducted comprehensive audience research and targeting to identify high-value customer segments and improve campaign performance.</li>
+                <li>Monitored and analyzed campaign metrics using Google Analytics and Meta Business Suite, providing data-driven insights for optimization.</li>
+                <li>Implemented A/B testing strategies for ad creatives, copy, and landing pages to improve CTR and reduce CPA.</li>
+                <li>Managed campaign budgets effectively, ensuring optimal allocation across search, display, and social media ad sets.</li>
+                <li>Created detailed performance reports using MS Excel, tracking KPIs including impressions, clicks, conversions, and ROAS.</li>
+                <li>Collaborated with cross-functional teams to align campaign strategies with business objectives and marketing goals.</li>
+                <li>Optimized existing campaigns through continuous monitoring, keyword refinement (Google Ads), and audience adjustments (Meta Ads).</li>
+                <li>Stayed updated with latest platform features, algorithm changes, and digital marketing trends to maintain competitive advantage.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <!-- 2. Meta Ads Expert (Vision Care Expert) -->
+        <!-- other experience items unchanged -->
         <div class="exp-card" id="exp-2">
-          <div class="exp-header">
-            <div class="exp-title">Meta Ads Expert</div>
-            <div class="exp-meta">Vision Care Expert — Jun 2025 to ongoing</div>
+          <div class="exp-card-hero" style="padding:12px 16px">
+            <div style="font-weight:900;color:#0b3b5a">Meta Ads Expert</div>
           </div>
-
-          <div class="exp-actions">
-            <button class="exp-toggle" data-target="exp-2-more" aria-expanded="false">View more</button>
-          </div>
-
-          <div id="exp-2-more" class="exp-more" aria-hidden="true">
-            <p>Planned, launched, and managed Meta advertising campaigns across Facebook and Instagram for the eye care industry, driving patient inquiries and appointment bookings.</p>
-            <ul>
-              <li>Developed targeted audience segments based on demographics, interests, and behaviors to reach potential patients seeking eye care services.</li>
-              <li>Created and optimized ad creatives and copy tailored to promote eye care services, products, and health awareness campaigns.</li>
-              <li>Monitored campaign performance using Meta Business Suite and Ads Manager, analyzing key metrics including reach, engagement, CTR, and conversion rates.</li>
-              <li>Implemented A/B testing for ad formats, visuals, and messaging to identify top-performing content and maximize campaign effectiveness.</li>
-              <li>Managed advertising budgets efficiently, optimizing cost-per-result and ensuring maximum ROAS.</li>
-              <li>Generated detailed performance reports using MS Excel, providing actionable insights and recommendations for campaign improvement.</li>
-              <li>Collaborated with the healthcare team to align marketing strategies with clinic objectives and patient acquisition goals.</li>
-              <li>Leveraged healthcare and optometry knowledge to create authentic, educational content that resonated with the target audience while ensuring compliance with Meta's healthcare-related policies.</li>
-            </ul>
+          <div class="exp-card-body">
+            <div class="exp-header">
+              <div class="exp-title">Meta Ads Expert</div>
+              <div class="exp-meta">Vision Care Expert — Jun 2025 to ongoing</div>
+            </div>
+            <div class="exp-actions">
+              <button class="exp-toggle" data-target="exp-2-more" aria-expanded="false">View more</button>
+            </div>
+            <div id="exp-2-more" class="exp-more" aria-hidden="true">
+              <p>Planned, launched, and managed Meta advertising campaigns across Facebook and Instagram for the eye care industry, driving patient inquiries and appointment bookings.</p>
+              <ul>
+                <li>Developed targeted audience segments based on demographics, interests, and behaviors to reach potential patients seeking eye care services.</li>
+                <li>Created and optimized ad creatives and copy tailored to promote eye care services, products, and health awareness campaigns.</li>
+                <li>Monitored campaign performance using Meta Business Suite and Ads Manager, analyzing key metrics including reach, engagement, CTR, and conversion rates.</li>
+                <li>Implemented A/B testing for ad formats, visuals, and messaging to identify top-performing content and maximize campaign effectiveness.</li>
+                <li>Managed advertising budgets efficiently, optimizing cost-per-result and ensuring maximum ROAS.</li>
+                <li>Generated detailed performance reports using MS Excel, providing actionable insights and recommendations for campaign improvement.</li>
+                <li>Collaborated with the healthcare team to align marketing strategies with clinic objectives and patient acquisition goals.</li>
+                <li>Leveraged healthcare and optometry knowledge to create authentic, educational content that resonated with the target audience while ensuring compliance with Meta's healthcare-related policies.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <!-- 3. Meta Ads Expert (Shifa Laser Eye Care) -->
         <div class="exp-card" id="exp-3">
-          <div class="exp-header">
-            <div class="exp-title">Meta Ads Expert</div>
-            <div class="exp-meta">Shifa Laser Eye Care — Sep 2025 to ongoing</div>
+          <div class="exp-card-hero" style="padding:12px 16px">
+            <div style="font-weight:900;color:#0b3b5a">Meta Ads Expert</div>
           </div>
-
-          <div class="exp-actions">
-            <button class="exp-toggle" data-target="exp-3-more" aria-expanded="false">View more</button>
-          </div>
-
-          <div id="exp-3-more" class="exp-more" aria-hidden="true">
-            <p>Planned, launched, and managed Meta advertising campaigns across Facebook and Instagram to promote laser eye surgery services and comprehensive eye care solutions.</p>
-            <ul>
-              <li>Developed highly targeted audience strategies to reach potential patients seeking LASIK, cataract surgery, and specialized eye treatments.</li>
-              <li>Created compelling ad creatives and copy that educated audiences about laser eye procedures, patient success stories, and clinic expertise.</li>
-              <li>Monitored and optimized campaign performance using Meta Business Suite and Ads Manager, tracking key metrics including appointment bookings, inquiries, and cost-per-lead.</li>
-              <li>Implemented A/B testing for ad formats, visuals, headlines, and calls-to-action to maximize engagement and conversion rates.</li>
-              <li>Managed advertising budgets strategically, optimizing spend allocation to achieve the lowest cost-per-acquisition while maintaining lead quality.</li>
-              <li>Generated comprehensive performance reports using MS Excel, providing data-driven insights and recommendations to stakeholders.</li>
-              <li>Collaborated with medical professionals and clinic management to ensure campaign messaging aligned with healthcare standards and patient needs.</li>
-              <li>Leveraged optometry knowledge to create medically accurate, patient-centric content that built trust and credibility, while ensuring full compliance with Meta's healthcare advertising policies.</li>
-            </ul>
+          <div class="exp-card-body">
+            <div class="exp-header">
+              <div class="exp-title">Meta Ads Expert</div>
+              <div class="exp-meta">Shifa Laser Eye Care — Sep 2025 to ongoing</div>
+            </div>
+            <div class="exp-actions">
+              <button class="exp-toggle" data-target="exp-3-more" aria-expanded="false">View more</button>
+            </div>
+            <div id="exp-3-more" class="exp-more" aria-hidden="true">
+              <p>Planned, launched, and managed Meta advertising campaigns across Facebook and Instagram to promote laser eye surgery services and comprehensive eye care solutions.</p>
+              <ul>
+                <li>Developed highly targeted audience strategies to reach potential patients seeking LASIK, cataract surgery, and specialized eye treatments.</li>
+                <li>Created compelling ad creatives and copy that educated audiences about laser eye procedures, patient success stories, and clinic expertise.</li>
+                <li>Monitored and optimized campaign performance using Meta Business Suite and Ads Manager, tracking key metrics including appointment bookings, inquiries, and cost-per-lead.</li>
+                <li>Implemented A/B testing for ad formats, visuals, headlines, and calls-to-action to maximize engagement and conversion rates.</li>
+                <li>Managed advertising budgets strategically, optimizing spend allocation to achieve the lowest cost-per-acquisition while maintaining lead quality.</li>
+                <li>Generated comprehensive performance reports using MS Excel, providing data-driven insights and recommendations to stakeholders.</li>
+                <li>Collaborated with medical professionals and clinic management to ensure campaign messaging aligned with healthcare standards and patient needs.</li>
+                <li>Leveraged optometry knowledge to create medically accurate, patient-centric content that built trust and credibility, while ensuring full compliance with Meta's healthcare advertising policies.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -471,30 +494,6 @@
           <div style="font-weight:800;color:var(--accent-strong);font-size:1.05rem">Digital Brand Launch & Marketing Strategy</div>
           <p style="margin:8px 0 0;color:#1e2e3b">Designed and executed multi-platform campaigns across Facebook, Instagram and YouTube to boost awareness and conversions.</p>
           <div style="margin-top:12px"><a class="pill small" href="#" target="_blank">Read More</a></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="internship">
-      <h3>Experience (Internships)</h3>
-      <!-- Internship cards kept unchanged -->
-      <div class="internship-cards" style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center">
-        <div class="intern-card">
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1200&q=80" alt="work">
-          <div class="intern-desc">
-            <div style="font-weight:800;color:var(--accent-strong)">Digital Marketing Intern</div>
-            <div style="color:#546e7a;margin-top:6px">M Tech Solutions · Internship · 2025 - Present</div>
-            <p style="margin-top:8px;color:#263238">Create & optimize Google Ads and Meta Ads campaigns, track KPIs and report optimizations.</p>
-          </div>
-        </div>
-
-        <div class="intern-card">
-          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80" alt="work">
-          <div class="intern-desc">
-            <div style="font-weight:800;color:var(--accent-strong)">Trainee Optometrist</div>
-            <div style="color:#546e7a;margin-top:6px">Alshifa Trust Eye Hospital · 2023 - 2026</div>
-            <p style="margin-top:8px;color:#263238">Clinical training and patient communication while pursuing optometry degree.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -552,13 +551,27 @@
         const target = document.getElementById(targetId);
         if (!target) return;
 
+        // For the M Tech card (exp-1) we keep details open by default; other cards start closed
+        const startOpen = btn.closest('#exp-1') ? true : false;
+        if (startOpen) {
+          target.classList.add('expanded');
+          target.setAttribute('aria-hidden','false');
+          btn.textContent = 'Hide Details';
+          btn.setAttribute('aria-expanded','true');
+        }
+
         btn.addEventListener('click', function() {
           const open = target.classList.toggle('expanded');
           target.setAttribute('aria-hidden', open ? 'false' : 'true');
           btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-          btn.textContent = open ? 'View less' : 'View more';
 
-          // when opening, scroll the expanded content into view a bit
+          // Friendly wording: exp-1 uses "Hide Details" / "View more"
+          if (btn.closest('#exp-1')) {
+            btn.textContent = open ? 'Hide Details' : 'View more';
+          } else {
+            btn.textContent = open ? 'View less' : 'View more';
+          }
+
           if (open) {
             setTimeout(() => {
               target.scrollIntoView({ behavior: 'smooth', block: 'start' });
