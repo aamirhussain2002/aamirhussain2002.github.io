@@ -18,6 +18,8 @@
       --accent-strong: #083759; /* dark blue edge color */
       --light-blue: #e8f6ff;    /* requested light blue backgrounds */
       --skill-light: #f0fbff;   /* skill card light background */
+      --read-more-bg: #1565c0;  /* read more button color */
+      --read-more-hover: #0a3977;
     }
     html,body{
       height:100%;
@@ -77,9 +79,7 @@
     section h3{color:var(--accent-strong);margin-top:0;font-size:1.6rem;font-weight:900}
 
     /* ---------- ABOUT: full-width professional card (light blue background + dark-blue edges) ---------- */
-    .about-grid{
-      display:block;
-    }
+    .about-grid{ display:block; }
     .about-left{
       padding:22px;border-radius:12px;
       background: var(--light-blue);                   /* full light blue background */
@@ -87,8 +87,35 @@
       color:var(--content-text);
       line-height:1.68;font-weight:600;font-size:0.98rem;
       border:3px solid var(--accent-strong);           /* dark blue edge */
+      position:relative;
     }
     .about-left p{margin:0 0 12px}
+
+    /* truncated content - initial half visible, rest hidden */
+    .about-more{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .42s ease;
+    }
+    .about-more.expanded{
+      max-height:1200px; /* large enough to show remainder */
+    }
+
+    /* view more button */
+    .read-more-wrap{display:flex;justify-content:center;margin-top:14px}
+    .read-more-btn{
+      background:var(--read-more-bg);
+      color:#fff;
+      border:none;
+      padding:10px 18px;
+      border-radius:10px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow: 0 10px 28px rgba(9,55,102,0.12);
+      transition: background .16s, transform .12s;
+    }
+    .read-more-btn:hover{ background:var(--read-more-hover); transform:translateY(-2px) }
+    .read-more-btn:focus{ outline:3px solid rgba(16,176,255,0.14); outline-offset:2px }
 
     /* ---------- SKILLS: category cards styled (light blue bg + dark blue edges) ---------- */
     .skills-grid{
@@ -204,6 +231,7 @@
 
       <div class="about-grid" aria-hidden="false">
         <div class="about-left">
+          <!-- Initially visible portion (half) -->
           <p>
             I am a certified Digital Marketing professional, having successfully completed industry-recognized certifications from Google, IBM, University of Maryland, and Meta. My training covers essential skills including Meta Ads, Google Ads, social media marketing, project management, and content creation.
           </p>
@@ -212,13 +240,22 @@
             I further honed these skills during my Digital Marketing Internship at M Tech Solution, where I gained hands-on experience in planning, launching, and optimizing PPC campaigns across Google platforms. This role strengthened my expertise in campaign management, audience targeting, performance analysis, and data tracking through MS Excel.
           </p>
 
-          <p>
-            In parallel, I am pursuing my bachelor's degree in optometry &amp; Orthoptics while gaining valuable clinical experience at a leading eye care facility. This unique combination of healthcare knowledge and digital marketing expertise enables me to bring a distinctive perspective—merging analytical thinking, technical precision, and creative problem-solving.
-          </p>
+          <!-- Hidden remainder (will expand when user clicks View more) -->
+          <div id="about-more" class="about-more" aria-hidden="true">
+            <p>
+              In parallel, I am pursuing my bachelor's degree in optometry &amp; Orthoptics while gaining valuable clinical experience at a leading eye care facility. This unique combination of healthcare knowledge and digital marketing expertise enables me to bring a distinctive perspective—merging analytical thinking, technical precision, and creative problem-solving.
+            </p>
 
-          <p>
-            I am eager to explore opportunities that leverage both my digital marketing capabilities and healthcare background, whether through professional roles, freelance projects, or collaborative ventures. My focus is on continuous learning and making meaningful contributions to dynamic, innovative industries.
-          </p>
+            <p>
+              I am eager to explore opportunities that leverage both my digital marketing capabilities and healthcare background, whether through professional roles, freelance projects, or collaborative ventures. My focus is on continuous learning and making meaningful contributions to dynamic, innovative industries.
+            </p>
+          </div>
+
+          <div class="read-more-wrap">
+            <button id="about-toggle" class="read-more-btn" aria-expanded="false" aria-controls="about-more">
+              View more
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -296,7 +333,7 @@
       </div>
     </section>
 
-    <!-- Projects, Experience, Education and Resume sections kept same -->
+    <!-- Projects, Experience (kept unchanged), Education and Resume sections kept same -->
     <section id="projects">
       <h3>Projects</h3>
       <div style="text-align:center">
@@ -310,6 +347,7 @@
 
     <section id="internship">
       <h3>Experience</h3>
+      <!-- Experience left unchanged as requested -->
       <div class="internship-cards" style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center">
         <div class="intern-card">
           <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1200&q=80" alt="work">
@@ -351,7 +389,36 @@
   </main>
 
   <script>
-    // accessibility: pills keyboard-focusable & activatable
+    // About section "View more" toggle
+    (function() {
+      const toggleBtn = document.getElementById('about-toggle');
+      const more = document.getElementById('about-more');
+
+      if (!toggleBtn || !more) return;
+
+      toggleBtn.addEventListener('click', function() {
+        const expanded = more.classList.toggle('expanded');
+        more.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+        toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        toggleBtn.textContent = expanded ? 'View less' : 'View more';
+
+        // Smooth scroll to keep context if collapsing
+        if (!expanded) {
+          // when collapsing, scroll the about header into view for clarity
+          document.querySelector('#about h3').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+
+      // keyboard accessibility: Enter/Space toggles
+      toggleBtn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleBtn.click();
+        }
+      });
+    })();
+
+    // pills accessibility (keyboard)
     document.querySelectorAll('.pill').forEach(function(el){
       el.setAttribute('tabindex','0');
       el.addEventListener('keydown', function(e){
