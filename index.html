@@ -160,6 +160,20 @@
     }
     .exp-toggle:hover{background:rgba(20,107,187,0.06);transform:translateY(-2px)}
 
+    /* image used for M Tech Solution (placed above and below) */
+    .exp-image{
+      display:block;
+      max-width:220px;
+      width:100%;
+      height:auto;
+      margin:12px auto;
+      border-radius:8px;
+      object-fit:cover;
+      border:2px solid rgba(6,40,70,0.06);
+      box-shadow:0 8px 20px rgba(6,40,70,0.06);
+      background:#fff;
+    }
+
     /* ---------- education styling (in-list institute line styling) ---------- */
     .education-list li{margin-bottom:8px;font-weight:700;color:#113449}
     .education-inst{display:block;font-weight:600;color:#546e7a;margin-top:4px}
@@ -175,6 +189,7 @@
       .pill{padding:8px 12px;font-size:0.9rem}
       .pill .pill-icon{width:16px;height:16px}
       main{margin-top:-10px}
+      .exp-image{max-width:160px}
     }
   </style>
 </head>
@@ -187,7 +202,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#internship">Experience</a></li>
+          <li><a href="#experience">Experience</a></li>
           <li><a href="#education">Education</a></li>
           <li><a href="#resume">View My CV</a></li>
         </ul>
@@ -361,8 +376,12 @@
 
       <div class="experience-list">
 
-        <!-- 1. Google & Meta Ads Expert -->
+        <!-- 1. Google & Meta Ads Expert (M Tech Solution) - with image above and below -->
         <div class="exp-card" id="exp-1">
+          <!-- image above (use the provided Image #2) -->
+          <!-- Replace the src value below with the actual uploaded filename or path for Image 2 -->
+          <img class="exp-image" src="images/mtech.jpg" alt="M Tech Solution logo / banner">
+
           <div class="exp-header">
             <div class="exp-title">Google & Meta Ads Expert</div>
             <div class="exp-meta">M Tech Solution — Jan 2025 to Dec 2025</div>
@@ -384,6 +403,9 @@
               <li>Optimized existing campaigns through continuous monitoring, keyword refinement (Google Ads), and audience adjustments (Meta Ads).</li>
               <li>Stayed updated with latest platform features, algorithm changes, and digital marketing trends to maintain competitive advantage.</li>
             </ul>
+
+            <!-- image below (same as above) -->
+            <img class="exp-image" src="images/mtech.jpg" alt="M Tech Solution logo / banner">
           </div>
         </div>
 
