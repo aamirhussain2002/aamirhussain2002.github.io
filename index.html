@@ -12,17 +12,19 @@
       --accent-blue: #10b0ff;
       --accent-pink: #f48fb1;
       --card-bg: #ffffff;
-      --muted-bg-top: linear-gradient(180deg,#0f394f 0%, #0c2f44 100%);
+      --page-bg: linear-gradient(180deg,#0f394f 0%, #0c2f44 100%);
       --text-bright: #e9f3fb;
-      --content-text: #1b3b50;
+      --content-text: #113449;
       --accent-strong: #083759;
+      --muted-soft: #f4f9ff;
+      --skill-accent: #eef6ff;
     }
     html,body{
       height:100%;
       margin:0;
       font-family:"Segoe UI", Roboto, Arial, sans-serif;
       color:var(--text-bright);
-      background:var(--muted-bg-top);
+      background:var(--page-bg);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
@@ -46,14 +48,12 @@
       box-shadow: inset 0 -10px 60px rgba(0,0,0,0.08);
     }
     .hero-inner{max-width:1100px;margin:0 auto;text-align:center;position:relative}
-    .role-label{
-      display:inline-block;color:#dbeffb;font-weight:800;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;font-size:0.92rem;
-    }
+    .role-label{display:inline-block;color:#dbeffb;font-weight:800;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;font-size:0.92rem;}
     .hero-title{font-size:3rem;font-weight:900;letter-spacing:3px;margin:6px 0 10px;color:#fff}
     .hero-sub{display:flex;align-items:center;gap:10px;justify-content:center;color:#eaf6ff;font-weight:700;margin-bottom:22px}
     .hero-sub .icon{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);border-radius:6px}
 
-    /* ---------- pills (smaller/professional) ---------- */
+    /* ---------- pills ---------- */
     .links-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;margin-top:8px}
     .pill{
       padding:10px 18px;border-radius:36px;color:#fff;font-weight:800;display:inline-flex;align-items:center;gap:10px;
@@ -66,14 +66,7 @@
     .pill:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 18px 44px rgba(16,176,255,0.14)}
     .pill:hover .pill-icon{opacity:1;transform:translateY(0) scale(1)}
     .pill.small{padding:8px 14px;font-size:0.88rem}
-
-    /* logo preview tooltip above pill */
-    .pill .logo-preview{
-      position:absolute;left:50%;transform:translateX(-50%) translateY(-110%);top:-8px;
-      background:rgba(255,255,255,0.98);padding:8px;border-radius:8px;display:flex;align-items:center;gap:8px;
-      box-shadow:0 12px 28px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:opacity .18s, transform .18s;
-      font-weight:700;color:#0b2f4c;font-size:0.9rem;
-    }
+    .pill .logo-preview{position:absolute;left:50%;transform:translateX(-50%) translateY(-110%);top:-8px;background:rgba(255,255,255,0.98);padding:8px;border-radius:8px;display:flex;align-items:center;gap:8px;box-shadow:0 12px 28px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:opacity .18s, transform .18s;font-weight:700;color:#0b2f4c;font-size:0.9rem}
     .pill:hover .logo-preview{opacity:1;transform:translateX(-50%) translateY(-140%)}
     .logo-preview img{width:26px;height:26px}
 
@@ -83,56 +76,40 @@
     section{background:var(--card-bg);border-radius:12px;padding:26px;margin-bottom:22px;box-shadow:0 6px 30px rgba(16,41,64,0.06)}
     section h3{color:var(--accent-strong);margin-top:0;font-size:1.6rem;font-weight:900}
 
-    /* ---------- ABOUT: two-column professional card ---------- */
+    /* ---------- ABOUT: full-width professional card ---------- */
     .about-grid{
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:20px;
-      align-items:start;
+      display:block;
     }
     .about-left{
-      padding:18px 20px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#fbfeff);
-      box-shadow:0 6px 18px rgba(9,34,56,0.06);
+      padding:22px;border-radius:12px;
+      background: linear-gradient(180deg,#f8fbff 0%, #eef6ff 100%);
+      box-shadow: 0 10px 30px rgba(8,55,89,0.06);
       color:var(--content-text);
-      line-height:1.65;font-weight:600;font-size:0.98rem;
+      line-height:1.68;font-weight:600;font-size:0.98rem;
+      border-left:4px solid var(--accent-blue);
     }
     .about-left p{margin:0 0 12px}
-    .about-accent{
-      border-left:4px solid var(--accent-blue);padding-left:14px;margin-bottom:12px;
-    }
-    .about-right{
-      padding:18px;border-radius:10px;background:linear-gradient(180deg,#f6fbff,#ffffff);
-      box-shadow:0 6px 18px rgba(9,34,56,0.04);
-      display:flex;flex-direction:column;gap:12px;align-items:stretch;
-    }
-    .about-quick{
-      display:flex;flex-direction:column;gap:8px;
-    }
-    .quick-item{display:flex;gap:10px;align-items:center}
-    .quick-bullet{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--accent-blue),var(--accent-pink));flex:0 0 10px}
-    .quick-text{font-weight:800;color:var(--accent-strong);font-size:0.95rem}
 
-    /* ---------- SKILLS: categories grid ---------- */
+    /* ---------- SKILLS: grid and card styling with professional backgrounds ---------- */
     .skills-grid{
       display:grid;
-      grid-template-columns:repeat(2, 1fr);
+      grid-template-columns:repeat(2,1fr);
       gap:16px;
     }
     .skill-card{
-      background:linear-gradient(180deg,#fff,#fbfdff);
-      border-radius:10px;padding:14px;border:1px solid rgba(6,40,70,0.04);
-      box-shadow:0 8px 20px rgba(11,31,50,0.04);
+      background: linear-gradient(180deg,#ffffff 0%, #f7fbff 100%);
+      border-radius:10px;padding:16px;border:1px solid rgba(6,40,70,0.06);
+      box-shadow:0 12px 28px rgba(6,40,70,0.04);
     }
     .skill-card h4{
-      margin:0 0 8px;font-size:1rem;color:var(--accent-strong);font-weight:900;
+      margin:0 0 10px;font-size:1rem;color:var(--accent-strong);font-weight:900;
       display:flex;align-items:center;gap:8px;
     }
-    .skill-list{margin:0;padding-left:16px;color:#184055;font-weight:700;line-height:1.6}
+    .skill-list{margin:0;padding-left:18px;color:#184055;font-weight:700;line-height:1.6}
     .skill-list li{margin-bottom:6px;font-weight:600;font-size:0.95rem}
 
-    /* small screens */
+    /* responsive */
     @media (max-width:980px){
-      .about-grid{grid-template-columns:1fr}
       .skills-grid{grid-template-columns:1fr}
     }
     @media (max-width:480px){
@@ -143,7 +120,6 @@
       .pill .pill-icon{width:16px;height:16px}
       main{margin-top:-10px}
     }
-
   </style>
 </head>
 <body>
@@ -179,55 +155,37 @@
         <a class="pill" href="mailto:altafwan1974@gmail.com" target="_blank" rel="noopener" aria-label="Email">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 13.065L2.4 6.3A2 2 0 0 1 4 4h16a2 2 0 0 1 1.6 2.3L12 13.065z'/><path d='M22 8.4v9.2A2.4 2.4 0 0 1 19.6 20H4.4A2.4 2.4 0 0 1 2 17.6V8.4l9.6 6.765a1.6 1.6 0 0 0 1.6 0L22 8.4z' opacity='0.9'/></svg>" alt="">
           <span class="pill-label">Gmail</span>
-          <span class="logo-preview" aria-hidden="true">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D14836'><path d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 6l8 5 8-5v-.01L12 11 4 5.99V6z'/></svg>" alt="">
-            <span>altafwan1974@gmail.com</span>
-          </span>
+          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D14836'><path d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 6l8 5 8-5v-.01L12 11 4 5.99V6z'/></svg>" alt=""><span>altafwan1974@gmail.com</span></span>
         </a>
 
         <a class="pill" href="https://www.linkedin.com/in/aamirdigitalmarketer/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-9 7H7v7h3v-7zm1 0v7h3v-4.2c0-1.6 2-1.7 2 0V17h3v-4.8c0-3.7-4.1-3.6-5.5-1.8V10h-3zM8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z'/></svg>" alt="">
           <span class="pill-label">LinkedIn</span>
-          <span class="logo-preview" aria-hidden="true">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230077B5'><path d='M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.5 9H6v7h2.5V9zM7.25 7.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM18 16.5H15.5v-3c0-.86-.7-1.25-1-1.25-.6 0-1 .4-1 1.25v3H10V9h2.4v1.1c.4-.7 1.2-1.1 2-1.1 1.7 0 3 1 3 3.5v4z'/></svg>" alt="">
-            <span>linkedin.com/in/aamirdigitalmarketer</span>
-          </span>
+          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230077B5'><path d='M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.5 9H6v7h2.5V9zM7.25 7.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM18 16.5H15.5v-3c0-.86-.7-1.25-1-1.25-.6 0-1 .4-1 1.25v3H10V9h2.4v1.1c.4-.7 1.2-1.1 2-1.1 1.7 0 3 1 3 3.5v4z'/></svg>" alt=""><span>linkedin.com/in/aamirdigitalmarketer</span></span>
         </a>
 
         <a class="pill" href="https://github.com/aamirhussain2002" target="_blank" rel="noopener" aria-label="GitHub">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 .5C5.7.5.9 5.3.9 11.6c0 4.6 3 8.5 7.1 9.9.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.9.7 2.6.9.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.2-4.7-5.4 0-1.2.4-2.1 1.2-2.9-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.1 1-.3 2-.5 3.1-.5s2.1.2 3.1.5c2.3-1.4 3.3-1.1 3.3-1.1.6 1.6.2 2.9.1 3.2.8.8 1.2 1.7 1.2 2.9 0 4.2-2.4 5.1-4.7 5.4.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.7.5 4.1-1.4 7.1-5.3 7.1-9.9C23.1 5.3 18.3.5 12 .5z'/></svg>" alt="">
           <span class="pill-label">GitHub</span>
-          <span class="logo-preview" aria-hidden="true">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'><path d='M12 .5C5.7.5.9 5.3.9 11.6c0 4.6 3 8.5 7.1 9.9.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.9.7 2.6.9.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.2-4.7-5.4 0-1.2.4-2.1 1.2-2.9-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.1 1-.3 2-.5 3.1-.5s2.1.2 3.1.5c2.3-1.4 3.3-1.1 3.3-1.1.6 1.6.2 2.9.1 3.2.8.8 1.2 1.7 1.2 2.9 0 4.2-2.4 5.1-4.7 5.4.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.7.5 4.1-1.4 7.1-5.3 7.1-9.9C23.1 5.3 18.3.5 12 .5z'/></svg>" alt="">
-            <span>github.com/aamirhussain2002</span>
-          </span>
+          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'><path d='M12 .5C5.7.5.9 5.3.9 11.6c0 4.6 3 8.5 7.1 9.9.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.9.7 2.6.9.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.2-4.7-5.4 0-1.2.4-2.1 1.2-2.9-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.1 1-.3 2-.5 3.1-.5s2.1.2 3.1.5c2.3-1.4 3.3-1.1 3.3-1.1.6 1.6.2 2.9.1 3.2.8.8 1.2 1.7 1.2 2.9 0 4.2-2.4 5.1-4.7 5.4.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.7.5 4.1-1.4 7.1-5.3 7.1-9.9C23.1 5.3 18.3.5 12 .5z'/></svg>" alt=""><span>github.com/aamirhussain2002</span></span>
         </a>
 
         <a class="pill" href="#" target="_blank" rel="noopener" aria-label="Credly">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 2l2.9 5.88L21 9.27l-4.5 4.38L17.8 21 12 17.77 6.2 21l1.3-7.35L3 9.27l6.1-1.39L12 2z'/></svg>" alt="">
           <span class="pill-label">Credly</span>
-          <span class="logo-preview" aria-hidden="true">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233e7bd6'><path d='M12 2l2.9 5.88L21 9.27l-4.5 4.38L17.8 21 12 17.77 6.2 21l1.3-7.35L3 9.27l6.1-1.39L12 2z'/></svg>" alt="">
-            <span>Credly Badges</span>
-          </span>
+          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233e7bd6'><path d='M12 2l2.9 5.88L21 9.27l-4.5 4.38L17.8 21 12 17.77 6.2 21l1.3-7.35L3 9.27l6.1-1.39L12 2z'/></svg>" alt=""><span>Credly Badges</span></span>
         </a>
 
         <a class="pill" href="tel:+923465124043" target="_blank" rel="noopener" aria-label="Phone">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C9.39 21 3 14.61 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57.12.37.05.78-.24 1.05l-2.21 2.17z'/></svg>" alt="">
           <span class="pill-label">+923465124043</span>
-          <span class="logo-preview" aria-hidden="true">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23007A5A'><path d='M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C9.39 21 3 14.61 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57.12.37.05.78-.24 1.05l-2.21 2.17z'/></svg>" alt="">
-            <span>Call / WhatsApp</span>
-          </span>
+          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23007A5A'><path d='M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C9.39 21 3 14.61 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57.12.37.05.78-.24 1.05l-2.21 2.17z'/></svg>" alt=""><span>Call / WhatsApp</span></span>
         </a>
 
         <a class="pill" href="https://maps.google.com/?q=Pakistan" target="_blank" rel="noopener" aria-label="Pakistan">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 2C8 2 5 5 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/></svg>" alt="">
           <span class="pill-label">Pakistan</span>
-          <span class="logo-preview" aria-hidden="true">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='3' fill='%23007A3D'/><path d='M12 5c.9 0 1.7.7 1.7 1.6 0 .9-.8 1.6-1.7 1.6s-1.7-.7-1.7-1.6C10.3 5.7 11.1 5 12 5z' fill='%23fff'/></svg>" alt="">
-            <span>Pakistan</span>
-          </span>
+          <span class="logo-preview" aria-hidden="true"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='3' fill='%23007A3D'/><path d='M12 5c.9 0 1.7.7 1.7 1.6 0 .9-.8 1.6-1.7 1.6s-1.7-.7-1.7-1.6C10.3 5.7 11.1 5 12 5z' fill='%23fff'/></svg>" alt=""><span>Pakistan</span></span>
         </a>
 
       </div>
@@ -240,38 +198,22 @@
 
       <div class="about-grid" aria-hidden="false">
         <div class="about-left">
-          <div class="about-accent">
-            <p>
-              I am a certified Digital Marketing professional, having successfully completed industry-recognized certifications from Google, IBM, University of Maryland, and Meta. My training covers essential skills including Meta Ads, Google Ads, social media marketing, project management, and content creation.
-            </p>
+          <p>
+            I am a certified Digital Marketing professional, having successfully completed industry-recognized certifications from Google, IBM, University of Maryland, and Meta. My training covers essential skills including Meta Ads, Google Ads, social media marketing, project management, and content creation.
+          </p>
 
-            <p>
-              I further honed these skills during my Digital Marketing Internship at M Tech Solution, where I gained hands-on experience in planning, launching, and optimizing PPC campaigns across Google platforms. This role strengthened my expertise in campaign management, audience targeting, performance analysis, and data tracking through MS Excel.
-            </p>
+          <p>
+            I further honed these skills during my Digital Marketing Internship at M Tech Solution, where I gained hands-on experience in planning, launching, and optimizing PPC campaigns across Google platforms. This role strengthened my expertise in campaign management, audience targeting, performance analysis, and data tracking through MS Excel.
+          </p>
 
-            <p>
-              In parallel, I am pursuing my bachelor's degree in optometry & Orthoptics while gaining valuable clinical experience at a leading eye care facility. This unique combination of healthcare knowledge and digital marketing expertise enables me to bring a distinctive perspective—merging analytical thinking, technical precision, and creative problem-solving.
-            </p>
+          <p>
+            In parallel, I am pursuing my bachelor's degree in optometry & Orthoptics while gaining valuable clinical experience at a leading eye care facility. This unique combination of healthcare knowledge and digital marketing expertise enables me to bring a distinctive perspective—merging analytical thinking, technical precision, and creative problem-solving.
+          </p>
 
-            <p>
-              I am eager to explore opportunities that leverage both my digital marketing capabilities and healthcare background, whether through professional roles, freelance projects, or collaborative ventures. My focus is on continuous learning and making meaningful contributions to dynamic, innovative industries.
-            </p>
-          </div>
+          <p>
+            I am eager to explore opportunities that leverage both my digital marketing capabilities and healthcare background, whether through professional roles, freelance projects, or collaborative ventures. My focus is on continuous learning and making meaningful contributions to dynamic, innovative industries.
+          </p>
         </div>
-
-        <aside class="about-right" aria-label="Quick highlights">
-          <div class="about-quick">
-            <div class="quick-item"><span class="quick-bullet"></span><span class="quick-text">Certifications: Google, IBM, Meta, University of Maryland</span></div>
-            <div class="quick-item"><span class="quick-bullet"></span><span class="quick-text">Core: Meta Ads, Google Ads, Social Media</span></div>
-            <div class="quick-item"><span class="quick-bullet"></span><span class="quick-text">Analytics & Reporting: Google Analytics (GA4), Excel</span></div>
-            <div class="quick-item"><span class="quick-bullet"></span><span class="quick-text">Experience: Digital Marketing Internship @ M Tech Solution</span></div>
-            <div class="quick-item"><span class="quick-bullet"></span><span class="quick-text">Parallel: Clinical optometry training</span></div>
-          </div>
-
-          <div style="margin-top:6px;border-top:1px dashed rgba(6,40,70,0.04);padding-top:12px;font-size:0.95rem;color:#184055;font-weight:800">
-            Seeking: roles, freelance work, & collaborations that blend marketing and healthcare insights.
-          </div>
-        </aside>
       </div>
     </section>
 
@@ -348,7 +290,7 @@
       </div>
     </section>
 
-    <!-- Projects, Experience, Education and Resume sections kept same as before -->
+    <!-- Projects, Experience, Education and Resume sections kept same -->
     <section id="projects">
       <h3>Projects</h3>
       <div style="text-align:center">
@@ -400,7 +342,7 @@
   </main>
 
   <script>
-    // accessibility: make pills keyboard-focusable & activatable
+    // accessibility: pills keyboard-focusable & activatable
     document.querySelectorAll('.pill').forEach(function(el){
       el.setAttribute('tabindex','0');
       el.addEventListener('keydown', function(e){
