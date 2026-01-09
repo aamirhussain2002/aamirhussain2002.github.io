@@ -15,9 +15,9 @@
       --page-bg: linear-gradient(180deg,#0f394f 0%, #0c2f44 100%);
       --text-bright: #e9f3fb;
       --content-text: #113449;
-      --accent-strong: #083759;
-      --muted-soft: #f4f9ff;
-      --skill-accent: #eef6ff;
+      --accent-strong: #083759; /* dark blue edge color */
+      --light-blue: #e8f6ff;    /* requested light blue backgrounds */
+      --skill-light: #f0fbff;   /* skill card light background */
     }
     html,body{
       height:100%;
@@ -76,37 +76,43 @@
     section{background:var(--card-bg);border-radius:12px;padding:26px;margin-bottom:22px;box-shadow:0 6px 30px rgba(16,41,64,0.06)}
     section h3{color:var(--accent-strong);margin-top:0;font-size:1.6rem;font-weight:900}
 
-    /* ---------- ABOUT: full-width professional card ---------- */
+    /* ---------- ABOUT: full-width professional card (light blue background + dark-blue edges) ---------- */
     .about-grid{
       display:block;
     }
     .about-left{
       padding:22px;border-radius:12px;
-      background: linear-gradient(180deg,#f8fbff 0%, #eef6ff 100%);
+      background: var(--light-blue);                   /* full light blue background */
       box-shadow: 0 10px 30px rgba(8,55,89,0.06);
       color:var(--content-text);
       line-height:1.68;font-weight:600;font-size:0.98rem;
-      border-left:4px solid var(--accent-blue);
+      border:3px solid var(--accent-strong);           /* dark blue edge */
     }
     .about-left p{margin:0 0 12px}
 
-    /* ---------- SKILLS: grid and card styling with professional backgrounds ---------- */
+    /* ---------- SKILLS: category cards styled (light blue bg + dark blue edges) ---------- */
     .skills-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:16px;
     }
     .skill-card{
-      background: linear-gradient(180deg,#ffffff 0%, #f7fbff 100%);
-      border-radius:10px;padding:16px;border:1px solid rgba(6,40,70,0.06);
+      background: var(--skill-light);                  /* light blue background */
+      border-radius:10px;padding:16px;
+      border:2px solid var(--accent-strong);           /* dark blue edge */
       box-shadow:0 12px 28px rgba(6,40,70,0.04);
     }
     .skill-card h4{
-      margin:0 0 10px;font-size:1rem;color:var(--accent-strong);font-weight:900;
+      margin:0 0 10px;font-size:1rem;color:var(--accent-blue); /* category heading in blue */
+      font-weight:900;
       display:flex;align-items:center;gap:8px;
     }
     .skill-list{margin:0;padding-left:18px;color:#184055;font-weight:700;line-height:1.6}
     .skill-list li{margin-bottom:6px;font-weight:600;font-size:0.95rem}
+
+    /* ---------- education styling (in-list institute line styling) ---------- */
+    .education-list li{margin-bottom:8px;font-weight:700;color:#113449}
+    .education-inst{display:block;font-weight:600;color:#546e7a;margin-top:4px}
 
     /* responsive */
     @media (max-width:980px){
@@ -207,7 +213,7 @@
           </p>
 
           <p>
-            In parallel, I am pursuing my bachelor's degree in optometry & Orthoptics while gaining valuable clinical experience at a leading eye care facility. This unique combination of healthcare knowledge and digital marketing expertise enables me to bring a distinctive perspective—merging analytical thinking, technical precision, and creative problem-solving.
+            In parallel, I am pursuing my bachelor's degree in optometry &amp; Orthoptics while gaining valuable clinical experience at a leading eye care facility. This unique combination of healthcare knowledge and digital marketing expertise enables me to bring a distinctive perspective—merging analytical thinking, technical precision, and creative problem-solving.
           </p>
 
           <p>
@@ -327,9 +333,12 @@
 
     <section id="education">
       <h3>Education</h3>
-      <ul style="margin:0;padding-left:18px;color:#1b3b50;font-weight:700">
+      <ul class="education-list" style="margin:0;padding-left:18px;color:#1b3b50;font-weight:700">
+        <li>
+          Bachelor of Optometry and Orthoptics
+          <span class="education-inst">Rawalpindi Medical University (2023 – 2026)</span>
+        </li>
         <li>Digital Marketing – Institute of Emerging Careers (IEC), Mianwali (Apr 2025 – Sep 2025)</li>
-        <li>Bachelor of Optometry & Orthoptics – University of Health Sciences, Lahore (2023 – 2026)</li>
       </ul>
     </section>
 
