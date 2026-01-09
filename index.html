@@ -137,6 +137,29 @@
     .skill-list{margin:0;padding-left:18px;color:#184055;font-weight:700;line-height:1.6}
     .skill-list li{margin-bottom:6px;font-weight:600;font-size:0.95rem}
 
+    /* ---------- EXPERIENCE cards ---------- */
+    .experience-list{display:flex;flex-direction:column;gap:14px}
+    .exp-card{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:10px;padding:14px;border:1px solid rgba(6,40,70,0.06);
+      box-shadow:0 8px 22px rgba(6,40,70,0.04);
+    }
+    .exp-header{display:flex;flex-direction:column;gap:6px}
+    .exp-title{font-weight:900;color:#0b3b5a;font-size:1.05rem}
+    .exp-meta{color:#546e7a;font-weight:700}
+    .exp-actions{margin-top:10px}
+    .exp-more{max-height:0;overflow:hidden;transition:max-height .36s ease;padding-top:0}
+    .exp-more.expanded{max-height:2000px;padding-top:12px}
+
+    .exp-more p, .exp-more li{color:#263238;line-height:1.6;font-weight:600;margin:0 0 8px}
+    .exp-more ul{margin-top:8px;padding-left:18px}
+
+    .exp-toggle{
+      background:transparent;border:0;color:var(--read-more-bg);font-weight:800;cursor:pointer;padding:8px 10px;border-radius:8px;
+      transition:background .12s, transform .12s;
+    }
+    .exp-toggle:hover{background:rgba(20,107,187,0.06);transform:translateY(-2px)}
+
     /* ---------- education styling (in-list institute line styling) ---------- */
     .education-list li{margin-bottom:8px;font-weight:700;color:#113449}
     .education-inst{display:block;font-weight:600;color:#546e7a;margin-top:4px}
@@ -333,7 +356,92 @@
       </div>
     </section>
 
-    <!-- Projects, Experience (kept unchanged), Education and Resume sections kept same -->
+    <section id="experience">
+      <h3>Experience</h3>
+
+      <div class="experience-list">
+
+        <!-- 1. Google & Meta Ads Expert -->
+        <div class="exp-card" id="exp-1">
+          <div class="exp-header">
+            <div class="exp-title">Google & Meta Ads Expert</div>
+            <div class="exp-meta">M Tech Solution — Jan 2025 to Dec 2025</div>
+          </div>
+
+          <div class="exp-actions">
+            <button class="exp-toggle" data-target="exp-1-more" aria-expanded="false">View more</button>
+          </div>
+
+          <div id="exp-1-more" class="exp-more" aria-hidden="true">
+            <p>Planned, launched, and managed Google Ads (PPC) campaigns and Meta advertising campaigns across Facebook and Instagram, optimizing for maximum ROI and conversion rates.</p>
+            <ul>
+              <li>Conducted comprehensive audience research and targeting to identify high-value customer segments and improve campaign performance.</li>
+              <li>Monitored and analyzed campaign metrics using Google Analytics and Meta Business Suite, providing data-driven insights for optimization.</li>
+              <li>Implemented A/B testing strategies for ad creatives, copy, and landing pages to improve CTR and reduce CPA.</li>
+              <li>Managed campaign budgets effectively, ensuring optimal allocation across search, display, and social media ad sets.</li>
+              <li>Created detailed performance reports using MS Excel, tracking KPIs including impressions, clicks, conversions, and ROAS.</li>
+              <li>Collaborated with cross-functional teams to align campaign strategies with business objectives and marketing goals.</li>
+              <li>Optimized existing campaigns through continuous monitoring, keyword refinement (Google Ads), and audience adjustments (Meta Ads).</li>
+              <li>Stayed updated with latest platform features, algorithm changes, and digital marketing trends to maintain competitive advantage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. Meta Ads Expert (Vision Care Expert) -->
+        <div class="exp-card" id="exp-2">
+          <div class="exp-header">
+            <div class="exp-title">Meta Ads Expert</div>
+            <div class="exp-meta">Vision Care Expert — Jun 2025 to ongoing</div>
+          </div>
+
+          <div class="exp-actions">
+            <button class="exp-toggle" data-target="exp-2-more" aria-expanded="false">View more</button>
+          </div>
+
+          <div id="exp-2-more" class="exp-more" aria-hidden="true">
+            <p>Planned, launched, and managed Meta advertising campaigns across Facebook and Instagram for the eye care industry, driving patient inquiries and appointment bookings.</p>
+            <ul>
+              <li>Developed targeted audience segments based on demographics, interests, and behaviors to reach potential patients seeking eye care services.</li>
+              <li>Created and optimized ad creatives and copy tailored to promote eye care services, products, and health awareness campaigns.</li>
+              <li>Monitored campaign performance using Meta Business Suite and Ads Manager, analyzing key metrics including reach, engagement, CTR, and conversion rates.</li>
+              <li>Implemented A/B testing for ad formats, visuals, and messaging to identify top-performing content and maximize campaign effectiveness.</li>
+              <li>Managed advertising budgets efficiently, optimizing cost-per-result and ensuring maximum ROAS.</li>
+              <li>Generated detailed performance reports using MS Excel, providing actionable insights and recommendations for campaign improvement.</li>
+              <li>Collaborated with the healthcare team to align marketing strategies with clinic objectives and patient acquisition goals.</li>
+              <li>Leveraged healthcare and optometry knowledge to create authentic, educational content that resonated with the target audience while ensuring compliance with Meta's healthcare-related policies.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Meta Ads Expert (Shifa Laser Eye Care) -->
+        <div class="exp-card" id="exp-3">
+          <div class="exp-header">
+            <div class="exp-title">Meta Ads Expert</div>
+            <div class="exp-meta">Shifa Laser Eye Care — Sep 2025 to ongoing</div>
+          </div>
+
+          <div class="exp-actions">
+            <button class="exp-toggle" data-target="exp-3-more" aria-expanded="false">View more</button>
+          </div>
+
+          <div id="exp-3-more" class="exp-more" aria-hidden="true">
+            <p>Planned, launched, and managed Meta advertising campaigns across Facebook and Instagram to promote laser eye surgery services and comprehensive eye care solutions.</p>
+            <ul>
+              <li>Developed highly targeted audience strategies to reach potential patients seeking LASIK, cataract surgery, and specialized eye treatments.</li>
+              <li>Created compelling ad creatives and copy that educated audiences about laser eye procedures, patient success stories, and clinic expertise.</li>
+              <li>Monitored and optimized campaign performance using Meta Business Suite and Ads Manager, tracking key metrics including appointment bookings, inquiries, and cost-per-lead.</li>
+              <li>Implemented A/B testing for ad formats, visuals, headlines, and calls-to-action to maximize engagement and conversion rates.</li>
+              <li>Managed advertising budgets strategically, optimizing spend allocation to achieve the lowest cost-per-acquisition while maintaining lead quality.</li>
+              <li>Generated comprehensive performance reports using MS Excel, providing data-driven insights and recommendations to stakeholders.</li>
+              <li>Collaborated with medical professionals and clinic management to ensure campaign messaging aligned with healthcare standards and patient needs.</li>
+              <li>Leveraged optometry knowledge to create medically accurate, patient-centric content that built trust and credibility, while ensuring full compliance with Meta's healthcare advertising policies.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <section id="projects">
       <h3>Projects</h3>
       <div style="text-align:center">
@@ -346,8 +454,8 @@
     </section>
 
     <section id="internship">
-      <h3>Experience</h3>
-      <!-- Experience left unchanged as requested -->
+      <h3>Experience (Internships)</h3>
+      <!-- Internship cards kept unchanged -->
       <div class="internship-cards" style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center">
         <div class="intern-card">
           <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=1200&q=80" alt="work">
@@ -394,27 +502,54 @@
       const toggleBtn = document.getElementById('about-toggle');
       const more = document.getElementById('about-more');
 
-      if (!toggleBtn || !more) return;
+      if (toggleBtn && more) {
+        toggleBtn.addEventListener('click', function() {
+          const expanded = more.classList.toggle('expanded');
+          more.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+          toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggleBtn.textContent = expanded ? 'View less' : 'View more';
+          if (!expanded) {
+            document.querySelector('#about h3').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
 
-      toggleBtn.addEventListener('click', function() {
-        const expanded = more.classList.toggle('expanded');
-        more.setAttribute('aria-hidden', expanded ? 'false' : 'true');
-        toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        toggleBtn.textContent = expanded ? 'View less' : 'View more';
+        toggleBtn.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleBtn.click();
+          }
+        });
+      }
+    })();
 
-        // Smooth scroll to keep context if collapsing
-        if (!expanded) {
-          // when collapsing, scroll the about header into view for clarity
-          document.querySelector('#about h3').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+    // Experience expand/collapse toggles
+    (function() {
+      const toggles = document.querySelectorAll('.exp-toggle');
+      toggles.forEach(btn => {
+        const targetId = btn.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (!target) return;
 
-      // keyboard accessibility: Enter/Space toggles
-      toggleBtn.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleBtn.click();
-        }
+        btn.addEventListener('click', function() {
+          const open = target.classList.toggle('expanded');
+          target.setAttribute('aria-hidden', open ? 'false' : 'true');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          btn.textContent = open ? 'View less' : 'View more';
+
+          // when opening, scroll the expanded content into view a bit
+          if (open) {
+            setTimeout(() => {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 180);
+          }
+        });
+
+        btn.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            btn.click();
+          }
+        });
       });
     })();
 
