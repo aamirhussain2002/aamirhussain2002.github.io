@@ -7,18 +7,17 @@
   <style>
     /* ---------- base ---------- */
     :root{
-      --nav-dark: #0f2133;   /* very dark navy */
-      --hero-deep: #0f3253;  /* deep blue hero */
+      --nav-dark: #0f2133;
+      --hero-deep: #0f3253;
       --accent-blue: #10b0ff;
       --accent-pink: #f48fb1;
       --card-bg: #ffffff;
-      --muted: #0f2638; /* slightly darker background to keep contrast with bright text */
-      --text-dark: #e9f3fb; /* brighter page text as requested */
+      --muted: #0f2638;
+      --text-dark: #e9f3fb;
       --muted-light: #f5f7fb;
     }
-    html,body{height:100%;margin:0;font-family: "Segoe UI", Roboto, Arial, sans-serif;color:var(--text-dark);background:
-      linear-gradient(180deg,#0f394f 0%, #0c2f44 100%); /* keep same blue gradient feel */
-    }
+    html,body{height:100%;margin:0;font-family:"Segoe UI", Roboto, Arial, sans-serif;color:var(--text-dark);background:
+      linear-gradient(180deg,#0f394f 0%, #0c2f44 100%);}
     a{color:inherit;text-decoration:none}
 
     /* ---------- top nav ---------- */
@@ -66,40 +65,45 @@
     }
     .hero-sub .icon{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);border-radius:6px;line-height:26px;text-align:center}
 
-    /* ---------- circle links (pills) with icons & hover animations ---------- */
-    .links-row{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;margin-top:8px}
+    /* ---------- circle links (pills) with icons & hover animations ----------
+       BUTTON SIZE ADJUSTED: smaller padding and font-size for a more professional look */
+    .links-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;margin-top:8px}
     .pill{
-      padding:14px 26px;border-radius:40px;color:#fff;font-weight:800;display:inline-flex;align-items:center;gap:10px;
+      padding:10px 18px;               /* smaller */
+      border-radius:36px;
+      color:#fff;font-weight:800;display:inline-flex;align-items:center;gap:10px;
       background:linear-gradient(90deg,var(--accent-blue), var(--accent-pink));
-      box-shadow:0 10px 30px rgba(16,176,255,0.12);border:2px solid rgba(255,255,255,0.06);
+      box-shadow:0 8px 22px rgba(16,176,255,0.10);
+      border:2px solid rgba(255,255,255,0.06);
       transition:transform .22s cubic-bezier(.2,.9,.4,1), box-shadow .22s, background .22s;
       position:relative; overflow:visible;
+      font-size:0.95rem;                /* slightly smaller text */
+      line-height:1;
     }
     .pill .pill-icon{
-      width:20px;height:20px;flex:0 0 20px;opacity:0;transform:translateY(6px) scale(.9);
-      transition:opacity .22s ease, transform .22s ease;
+      width:18px;height:18px;flex:0 0 18px;opacity:0;transform:translateY(6px) scale(.95);
+      transition:opacity .18s ease, transform .18s ease;
       filter:drop-shadow(0 2px 4px rgba(0,0,0,0.25));
     }
     .pill .pill-label{display:inline-block;white-space:nowrap;transform:translateY(0);transition:transform .22s}
     .pill:hover{
-      transform:translateY(-6px) scale(1.02);
-      box-shadow:0 20px 50px rgba(16,176,255,0.18);
+      transform:translateY(-5px) scale(1.02);
+      box-shadow:0 18px 44px rgba(16,176,255,0.14);
     }
     .pill:hover .pill-icon{
       opacity:1; transform:translateY(0) scale(1);
     }
-    .pill.small{padding:10px 18px;font-weight:800}
+    .pill.small{padding:8px 14px;font-weight:800;font-size:0.88rem}
 
-    /* optional subtle bounce for pointer entering */
-    .pill:focus, .pill:active { outline: none; box-shadow:0 24px 60px rgba(16,176,255,0.2); transform:translateY(-6px) scale(1.02); }
+    .pill:focus, .pill:active { outline: none; box-shadow:0 20px 60px rgba(16,176,255,0.18); transform:translateY(-5px) scale(1.02); }
 
-    /* ---------- content sections (kept same visually but text brighter) ---------- */
+    /* ---------- content sections ---------- */
     main{max-width:1000px;margin:-32px auto 80px;padding:0 18px}
     section{background:var(--card-bg);border-radius:12px;padding:30px;margin-bottom:22px;box-shadow:0 6px 30px rgba(16,41,64,0.06)}
     section h3{color:#083759;margin-top:0;font-size:1.6rem;font-weight:900}
-    #about p, .intern-desc p, .intern-desc div { color:#1b3b50; line-height:1.7; font-weight:600 } /* brighter, stronger text */
+    #about p, .intern-desc p, .intern-desc div { color:#1b3b50; line-height:1.7; font-weight:600 }
 
-    /* ---------- internship cards small ---------- */
+    /* ---------- internship cards ---------- */
     .internship-cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
     .intern-card{width:420px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 12px 30px rgba(7,18,35,0.06)}
     .intern-card img{width:100%;height:180px;object-fit:cover}
@@ -108,27 +112,25 @@
     /* ---------- responsive ---------- */
     @media (max-width:820px){
       .hero-title{font-size:2.1rem}
+      .links-row{gap:12px}
     }
     @media (max-width:480px){
       .hero{padding:34px 12px 48px}
       .nav-inner{padding:12px}
       .hero-title{font-size:1.5rem}
-      .links-row{gap:12px}
-      .pill{padding:10px 16px}
+      .pill{padding:8px 12px;font-size:0.9rem}
+      .pill .pill-icon{width:16px;height:16px}
     }
 
-    /* small helper to show a larger logo preview on hover (absolute) */
+    /* logo-preview small tooltip */
     .pill .logo-preview{
       position:absolute;left:50%;transform:translateX(-50%) translateY(-110%);top:-8px;
       background:rgba(255,255,255,0.98);padding:8px;border-radius:8px;display:flex;align-items:center;gap:8px;
-      box-shadow:0 12px 30px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:opacity .18s, transform .18s;
-      font-weight:800;color:#0b2f4c;font-size:0.9rem;
+      box-shadow:0 12px 28px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:opacity .18s, transform .18s;
+      font-weight:700;color:#0b2f4c;font-size:0.9rem;
     }
     .pill:hover .logo-preview{opacity:1;transform:translateX(-50%) translateY(-140%);pointer-events:none}
-
-    /* make the logo-preview image small */
-    .logo-preview img{width:28px;height:28px}
-
+    .logo-preview img{width:26px;height:26px}
   </style>
 </head>
 <body>
@@ -194,7 +196,7 @@
           </span>
         </a>
 
-        <!-- Credly (generic badge icon) -->
+        <!-- Credly -->
         <a class="pill" href="#" target="_blank" rel="noopener" aria-label="Credly">
           <img class="pill-icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'><path d='M12 2l2.9 5.88L21 9.27l-4.5 4.38L17.8 21 12 17.77 6.2 21l1.3-7.35L3 9.27l6.1-1.39L12 2z'/></svg>" alt="">
           <span class="pill-label">Credly</span>
@@ -302,9 +304,9 @@
   </main>
 
   <script>
-    // No flip functionality needed (removed). Add small keyboard accessibility:
+    // accessibility: make pills focusable & keyboard-activatable
     document.querySelectorAll('.pill').forEach(function(el){
-      el.setAttribute('tabindex','0'); // make focusable
+      el.setAttribute('tabindex','0');
       el.addEventListener('keydown', function(e){
         if(e.key === 'Enter' || e.key === ' ') el.click();
       });
